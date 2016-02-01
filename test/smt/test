@@ -1,0 +1,17 @@
+#!/bin/bash
+PATH0="../"
+PATH1="../../"
+JAVA="/usr/bin/java"
+FILE0="test.smt.testSMTSolving"
+
+echo "running test cases for SMT solving"
+STR=$(pwd)
+echo $STR
+if [[ $STR == *smt ]]; then
+	cd $PATH1
+else
+	cd $PATH0
+fi
+
+$JAVA $FILE0
+echo "leaving SMT solving testing."

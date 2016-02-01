@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- Build file for ASMIG Written by: Hao Wu -->
+<project name="uran" default="build" basedir=".">
+	<!-- define Java source and target version -->
+	<property name="java.targetversion" value="1.7" />
+	<property name="java.sourceversion" value="1.7" />
+	<!-- source -->
+	<property name="src.dir"  location="${basedir}/src/" />
+	<!-- target -->
+	<property name="build.dir"          location="${basedir}/build"/>
+	<property name="build.classes.dir"  location="${build.dir}/classes"/>
+
+<echo>Compiling uran...</echo>
+<target name="build" >
+	 <mkdir dir="${build.classes.dir}"/>
+	 <javac srcdir="${src.dir}" destdir="${build.classes.dir}" 
+    	  deprecation="on" debug="on" listfiles="off" 
+    	  source="${java.sourceversion}" target="${java.targetversion}">
+	 </javac>
+</target>
+</project>

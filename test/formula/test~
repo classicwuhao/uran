@@ -1,0 +1,18 @@
+#!/bin/bash
+PATH0="../"
+PATH1="../../"
+JAVA="/usr/bin/java"
+FILE0="test.formula.testFormula"
+FILE1="test.formula.testBooleanCircuit"
+echo "running formula test cases..."
+STR=$(pwd)
+echo $STR
+if [[ $STR == *formula ]]; then
+	cd $PATH1
+else
+	cd $PATH0
+fi
+
+$JAVA $FILE0
+$JAVA $FILE1
+echo "leaving formula testing."
