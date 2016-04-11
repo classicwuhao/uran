@@ -1,7 +1,10 @@
-Latest Update: 2016
+Latest Update: March - 2016
 Uran:
 
-Uran is the new core engine (written in Java) for replacing atongmu which is the main engine used in ASMIG project. Uran simplifies the way of building formulas in SMT2 standard, and it also allows users to perform incremental solving by iteratively calling solver's API (a link between Java and C++). At the moment, Uran supports Z3 SMT solver and also outputs your propositional formulas in dimacs format which can be used by your favourite SAT solver.
+Uran is the new core engine (written in Java) for replacing atongmu which is the main engine used in ASMIG project. 
+Uran simplifies the way of building formulas in SMT2 standard, and it also allows users to perform incremental solving 
+by iteratively calling solver's API (a link between Java and C++). At the moment, Uran supports Z3 SMT solver and also outputs 
+your propositional formulas in dimacs format which can be used by your favourite SAT solver.
 
 API Documentation (Partial): please see docs folder.
 
