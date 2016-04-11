@@ -1,0 +1,6 @@
+<map id="uran.formula.type.Type" name="uran.formula.type.Type">
+<area shape="rect" id="node2" href="$classuran_1_1formula_1_1type_1_1_bool.html" title="uran.formula.type.Bool" alt="" coords="210,5,363,32"/>
+<area shape="rect" id="node3" href="$classuran_1_1formula_1_1type_1_1_int.html" title="uran.formula.type.Int" alt="" coords="215,56,358,83"/>
+<area shape="rect" id="node4" href="$classuran_1_1formula_1_1type_1_1_real.html" title="uran.formula.type.Real" alt="" coords="209,107,364,133"/>
+<area shape="rect" id="node5" href="$classuran_1_1formula_1_1type_1_1_sort.html" title="uran.formula.type.Sort" alt="" coords="211,157,362,184"/>
+</map>

@@ -1,0 +1,264 @@
+\hypertarget{classuran_1_1formula_1_1_scope}{}\section{uran.\+formula.\+Scope Class Reference}
+\label{classuran_1_1formula_1_1_scope}\index{uran.\+formula.\+Scope@{uran.\+formula.\+Scope}}
+
+
+Inheritance diagram for uran.\+formula.\+Scope\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classuran_1_1formula_1_1_scope__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for uran.\+formula.\+Scope\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classuran_1_1formula_1_1_scope__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classuran_1_1formula_1_1_scope_ac5661afaf89ebf683a789f58c5f91eb3}{Scope} (Abstract\+Formula...\+formulas)
+\item 
+\hyperlink{classuran_1_1formula_1_1_scope_aeda91ed3809961683dd236647e2d9871}{Scope} (\hyperlink{classuran_1_1formula_1_1_scope}{Scope} scope)
+\item 
+void \hyperlink{classuran_1_1formula_1_1_scope_a069703af6e4b8265d4c99447f3a46403}{add} (\hyperlink{classuran_1_1formula_1_1_abstract_formula}{Abstract\+Formula} formula)
+\item 
+void \hyperlink{classuran_1_1formula_1_1_scope_a535ee6b2618a9221c1c305ab2ef0529b}{join} (\hyperlink{classuran_1_1formula_1_1_scope}{Scope} scope)
+\item 
+void \hyperlink{classuran_1_1formula_1_1_scope_a6a0a1111b24099bfc0213b093aa2181a}{remove} (int i)
+\item 
+void \hyperlink{classuran_1_1formula_1_1_scope_a8cb26db7fe4cc5f5e29a2ad3cbb3ee75}{remove} (\hyperlink{classuran_1_1formula_1_1_abstract_formula}{Abstract\+Formula} formula)
+\item 
+boolean \hyperlink{classuran_1_1formula_1_1_scope_a0e0e85a0dc10fa8aee50432dbd32c972}{is\+Context\+Empty} ()
+\item 
+\hyperlink{classuran_1_1formula_1_1_scope}{Scope} \hyperlink{classuran_1_1formula_1_1_scope_a93562fc2826ae2bda02db75223718abc}{get\+Scope} ()
+\item 
+void \hyperlink{classuran_1_1formula_1_1_scope_a200033f86dfddcc1f11b6f048ad78c5f}{set\+Scope} (\hyperlink{classuran_1_1formula_1_1_scope}{Scope} scope)
+\item 
+boolean \hyperlink{classuran_1_1formula_1_1_scope_aa87c683a73376736ee94c258540e1d7d}{is\+Scope\+Empty} ()
+\item 
+List$<$ \hyperlink{classuran_1_1formula_1_1_abstract_formula}{Abstract\+Formula} $>$ \hyperlink{classuran_1_1formula_1_1_scope_a3fb012481e2d448c685fdb7569b881f3}{get\+Context} ()
+\item 
+int \hyperlink{classuran_1_1formula_1_1_scope_aafc3a7f249e92343c3343b52ace8a4d7}{size} ()
+\item 
+void \hyperlink{classuran_1_1formula_1_1_scope_a137ea46a83effb6bd9f432bdda2c49e0}{flatten} ()
+\item 
+String \hyperlink{classuran_1_1formula_1_1_scope_a0c93ff24b68cd689c7e7d9472fefcfa6}{to\+String} ()
+\item 
+String \hyperlink{classuran_1_1formula_1_1_scope_a425aaeb37f0d4f8133a25662a5b6fd1c}{to\+S\+M\+T2} ()
+\item 
+void \hyperlink{classuran_1_1formula_1_1_scope_ab0374b55637b597b49bf58e7cf581f1b}{accept} (\hyperlink{classuran_1_1formula_1_1visitor_1_1_abstract_visitor}{Abstract\+Visitor} visitor)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A scope can contain multiple formulas and another scope \begin{DoxyAuthor}{Author}
+Hao Wu 
+\end{DoxyAuthor}
+
+
+Definition at line 25 of file Scope.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classuran_1_1formula_1_1_scope_ac5661afaf89ebf683a789f58c5f91eb3}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!Scope@{Scope}}
+\index{Scope@{Scope}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{Scope}]{\setlength{\rightskip}{0pt plus 5cm}uran.\+formula.\+Scope.\+Scope (
+\begin{DoxyParamCaption}
+\item[{Abstract\+Formula...}]{formulas}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_ac5661afaf89ebf683a789f58c5f91eb3}
+
+
+Definition at line 31 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_aeda91ed3809961683dd236647e2d9871}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!Scope@{Scope}}
+\index{Scope@{Scope}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{Scope}]{\setlength{\rightskip}{0pt plus 5cm}uran.\+formula.\+Scope.\+Scope (
+\begin{DoxyParamCaption}
+\item[{{\bf Scope}}]{scope}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_aeda91ed3809961683dd236647e2d9871}
+we allow an scope to be null. 
+
+Definition at line 35 of file Scope.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classuran_1_1formula_1_1_scope_ab0374b55637b597b49bf58e7cf581f1b}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!accept@{accept}}
+\index{accept@{accept}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{accept}]{\setlength{\rightskip}{0pt plus 5cm}void uran.\+formula.\+Scope.\+accept (
+\begin{DoxyParamCaption}
+\item[{{\bf Abstract\+Visitor}}]{visitor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_ab0374b55637b597b49bf58e7cf581f1b}
+
+
+Definition at line 104 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_a069703af6e4b8265d4c99447f3a46403}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!add@{add}}
+\index{add@{add}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{add}]{\setlength{\rightskip}{0pt plus 5cm}void uran.\+formula.\+Scope.\+add (
+\begin{DoxyParamCaption}
+\item[{{\bf Abstract\+Formula}}]{formula}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_a069703af6e4b8265d4c99447f3a46403}
+add a formula into the scope. 
+\begin{DoxyParams}{Parameters}
+{\em formula} & any formula \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 45 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_a137ea46a83effb6bd9f432bdda2c49e0}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!flatten@{flatten}}
+\index{flatten@{flatten}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{flatten}]{\setlength{\rightskip}{0pt plus 5cm}void uran.\+formula.\+Scope.\+flatten (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_a137ea46a83effb6bd9f432bdda2c49e0}
+flatten all scopes contained in the current scope 
+
+Definition at line 71 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_a3fb012481e2d448c685fdb7569b881f3}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!get\+Context@{get\+Context}}
+\index{get\+Context@{get\+Context}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{get\+Context}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Abstract\+Formula}$>$ uran.\+formula.\+Scope.\+get\+Context (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_a3fb012481e2d448c685fdb7569b881f3}
+
+
+Definition at line 67 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_a93562fc2826ae2bda02db75223718abc}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!get\+Scope@{get\+Scope}}
+\index{get\+Scope@{get\+Scope}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{get\+Scope}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scope} uran.\+formula.\+Scope.\+get\+Scope (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_a93562fc2826ae2bda02db75223718abc}
+
+
+Definition at line 64 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_a0e0e85a0dc10fa8aee50432dbd32c972}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!is\+Context\+Empty@{is\+Context\+Empty}}
+\index{is\+Context\+Empty@{is\+Context\+Empty}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{is\+Context\+Empty}]{\setlength{\rightskip}{0pt plus 5cm}boolean uran.\+formula.\+Scope.\+is\+Context\+Empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_a0e0e85a0dc10fa8aee50432dbd32c972}
+
+
+Definition at line 63 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_aa87c683a73376736ee94c258540e1d7d}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!is\+Scope\+Empty@{is\+Scope\+Empty}}
+\index{is\+Scope\+Empty@{is\+Scope\+Empty}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{is\+Scope\+Empty}]{\setlength{\rightskip}{0pt plus 5cm}boolean uran.\+formula.\+Scope.\+is\+Scope\+Empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_aa87c683a73376736ee94c258540e1d7d}
+
+
+Definition at line 66 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_a535ee6b2618a9221c1c305ab2ef0529b}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!join@{join}}
+\index{join@{join}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{join}]{\setlength{\rightskip}{0pt plus 5cm}void uran.\+formula.\+Scope.\+join (
+\begin{DoxyParamCaption}
+\item[{{\bf Scope}}]{scope}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_a535ee6b2618a9221c1c305ab2ef0529b}
+join the current scope with another scope (overwrite). 
+\begin{DoxyParams}{Parameters}
+{\em scope} & any scope \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 55 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_a6a0a1111b24099bfc0213b093aa2181a}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!remove@{remove}}
+\index{remove@{remove}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{remove}]{\setlength{\rightskip}{0pt plus 5cm}void uran.\+formula.\+Scope.\+remove (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_a6a0a1111b24099bfc0213b093aa2181a}
+
+
+Definition at line 61 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_a8cb26db7fe4cc5f5e29a2ad3cbb3ee75}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!remove@{remove}}
+\index{remove@{remove}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{remove}]{\setlength{\rightskip}{0pt plus 5cm}void uran.\+formula.\+Scope.\+remove (
+\begin{DoxyParamCaption}
+\item[{{\bf Abstract\+Formula}}]{formula}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_a8cb26db7fe4cc5f5e29a2ad3cbb3ee75}
+
+
+Definition at line 62 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_a200033f86dfddcc1f11b6f048ad78c5f}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!set\+Scope@{set\+Scope}}
+\index{set\+Scope@{set\+Scope}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{set\+Scope}]{\setlength{\rightskip}{0pt plus 5cm}void uran.\+formula.\+Scope.\+set\+Scope (
+\begin{DoxyParamCaption}
+\item[{{\bf Scope}}]{scope}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_a200033f86dfddcc1f11b6f048ad78c5f}
+
+
+Definition at line 65 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_aafc3a7f249e92343c3343b52ace8a4d7}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!size@{size}}
+\index{size@{size}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}int uran.\+formula.\+Scope.\+size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_aafc3a7f249e92343c3343b52ace8a4d7}
+
+
+Definition at line 68 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_a425aaeb37f0d4f8133a25662a5b6fd1c}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!to\+S\+M\+T2@{to\+S\+M\+T2}}
+\index{to\+S\+M\+T2@{to\+S\+M\+T2}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{to\+S\+M\+T2}]{\setlength{\rightskip}{0pt plus 5cm}String uran.\+formula.\+Scope.\+to\+S\+M\+T2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_a425aaeb37f0d4f8133a25662a5b6fd1c}
+
+
+Definition at line 93 of file Scope.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_scope_a0c93ff24b68cd689c7e7d9472fefcfa6}{}\index{uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!uran\+::formula\+::\+Scope@{uran\+::formula\+::\+Scope}}
+\subsubsection[{to\+String}]{\setlength{\rightskip}{0pt plus 5cm}String uran.\+formula.\+Scope.\+to\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_scope_a0c93ff24b68cd689c7e7d9472fefcfa6}
+
+
+Definition at line 82 of file Scope.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/haowu/uran/src/uran/formula/\hyperlink{_scope_8java}{Scope.\+java}\end{DoxyCompactItemize}

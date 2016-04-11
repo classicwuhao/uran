@@ -1,0 +1,64 @@
+\hypertarget{classuran_1_1solver_1_1_z3_s_m_t2_solver}{}\section{uran.\+solver.\+Z3\+S\+M\+T2\+Solver Class Reference}
+\label{classuran_1_1solver_1_1_z3_s_m_t2_solver}\index{uran.\+solver.\+Z3\+S\+M\+T2\+Solver@{uran.\+solver.\+Z3\+S\+M\+T2\+Solver}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classuran_1_1solver_1_1_z3_s_m_t2_solver_a961b3005a57f8904e9037dc9fab7cf59}{Z3\+S\+M\+T2\+Solver} (\hyperlink{classuran_1_1formula_1_1smt2_1_1_s_m_t2_writer}{S\+M\+T2\+Writer} writer)
+\item 
+\hyperlink{classuran_1_1formula_1_1smt2_1_1_s_m_t2_writer}{S\+M\+T2\+Writer} \hyperlink{classuran_1_1solver_1_1_z3_s_m_t2_solver_ad09cc76d68a52efc3125db57a1a5f7fb}{get\+Writer} ()
+\item 
+\hyperlink{enumuran_1_1solver_1_1_result}{Result} \hyperlink{classuran_1_1solver_1_1_z3_s_m_t2_solver_a0830a60b458dd84b98d8ff01fd483712}{solve} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+We only need to use Z3 A\+P\+Is to read in an smt2 file and solve it for us, we also update our constants and uninterpreted functions We decouple the following piece of code from Z3 A\+P\+Is as much as possible so that we can easily upgrade our own formula part.
+
+A very simple solve method that uses Z3 A\+P\+I to solve the formula we have generated. 
+
+Definition at line 32 of file Z3\+S\+M\+T2\+Solver.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classuran_1_1solver_1_1_z3_s_m_t2_solver_a961b3005a57f8904e9037dc9fab7cf59}{}\index{uran\+::solver\+::\+Z3\+S\+M\+T2\+Solver@{uran\+::solver\+::\+Z3\+S\+M\+T2\+Solver}!Z3\+S\+M\+T2\+Solver@{Z3\+S\+M\+T2\+Solver}}
+\index{Z3\+S\+M\+T2\+Solver@{Z3\+S\+M\+T2\+Solver}!uran\+::solver\+::\+Z3\+S\+M\+T2\+Solver@{uran\+::solver\+::\+Z3\+S\+M\+T2\+Solver}}
+\subsubsection[{Z3\+S\+M\+T2\+Solver}]{\setlength{\rightskip}{0pt plus 5cm}uran.\+solver.\+Z3\+S\+M\+T2\+Solver.\+Z3\+S\+M\+T2\+Solver (
+\begin{DoxyParamCaption}
+\item[{{\bf S\+M\+T2\+Writer}}]{writer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1solver_1_1_z3_s_m_t2_solver_a961b3005a57f8904e9037dc9fab7cf59}
+Construct solver with a non-\/null S\+M\+T2\+Writer. 
+
+Definition at line 40 of file Z3\+S\+M\+T2\+Solver.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classuran_1_1solver_1_1_z3_s_m_t2_solver_ad09cc76d68a52efc3125db57a1a5f7fb}{}\index{uran\+::solver\+::\+Z3\+S\+M\+T2\+Solver@{uran\+::solver\+::\+Z3\+S\+M\+T2\+Solver}!get\+Writer@{get\+Writer}}
+\index{get\+Writer@{get\+Writer}!uran\+::solver\+::\+Z3\+S\+M\+T2\+Solver@{uran\+::solver\+::\+Z3\+S\+M\+T2\+Solver}}
+\subsubsection[{get\+Writer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+M\+T2\+Writer} uran.\+solver.\+Z3\+S\+M\+T2\+Solver.\+get\+Writer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1solver_1_1_z3_s_m_t2_solver_ad09cc76d68a52efc3125db57a1a5f7fb}
+Returns the current formula writer. 
+
+Definition at line 48 of file Z3\+S\+M\+T2\+Solver.\+java.
+
+\hypertarget{classuran_1_1solver_1_1_z3_s_m_t2_solver_a0830a60b458dd84b98d8ff01fd483712}{}\index{uran\+::solver\+::\+Z3\+S\+M\+T2\+Solver@{uran\+::solver\+::\+Z3\+S\+M\+T2\+Solver}!solve@{solve}}
+\index{solve@{solve}!uran\+::solver\+::\+Z3\+S\+M\+T2\+Solver@{uran\+::solver\+::\+Z3\+S\+M\+T2\+Solver}}
+\subsubsection[{solve}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Result} uran.\+solver.\+Z3\+S\+M\+T2\+Solver.\+solve (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1solver_1_1_z3_s_m_t2_solver_a0830a60b458dd84b98d8ff01fd483712}
+Use Z3 Java A\+P\+Is to perform solving. 
+
+Definition at line 53 of file Z3\+S\+M\+T2\+Solver.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/haowu/uran/src/uran/solver/\hyperlink{_z3_s_m_t2_solver_8java}{Z3\+S\+M\+T2\+Solver.\+java}\end{DoxyCompactItemize}

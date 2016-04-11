@@ -1,0 +1,269 @@
+\hypertarget{classuran_1_1formula_1_1_function_factory}{}\section{uran.\+formula.\+Function\+Factory Class Reference}
+\label{classuran_1_1formula_1_1_function_factory}\index{uran.\+formula.\+Function\+Factory@{uran.\+formula.\+Function\+Factory}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classuran_1_1formula_1_1_function_factory_a93f76edeabe521e3b90377bb89cbb725}{Function\+Factory} ()
+\item 
+\hyperlink{classuran_1_1formula_1_1_function_factory_a38475ef8d6732b1f8f3fca34624791e1}{Function\+Factory} (int cap)
+\item 
+\hyperlink{classuran_1_1formula_1_1_function_factory_ab68f793821a4bc035673156bc7bc238e}{Function\+Factory} (int cap, float load)
+\item 
+\hyperlink{classuran_1_1formula_1_1_constant}{Constant} \hyperlink{classuran_1_1formula_1_1_function_factory_acaf3bd05dd854be14c7b7347a5cfe970}{create\+Constant} (String name, \hyperlink{classuran_1_1formula_1_1type_1_1_type}{Type} type)
+\item 
+\hyperlink{classuran_1_1formula_1_1_function}{Function} \hyperlink{classuran_1_1formula_1_1_function_factory_a49fb8c9efb968aa482706abbbf2deaa3}{create\+Function} (String name, Type...\+args)
+\item 
+\hyperlink{classuran_1_1formula_1_1_constant}{Constant} \hyperlink{classuran_1_1formula_1_1_function_factory_a3e2c6df5ad1b23b8b51d4775d1953a94}{con\+Lookup} (String name)
+\item 
+\hyperlink{classuran_1_1formula_1_1_function}{Function} \hyperlink{classuran_1_1formula_1_1_function_factory_a644cfc1803a1827e9ce03c26d6cf120d}{fun\+Lookup} (String name)
+\item 
+int \hyperlink{classuran_1_1formula_1_1_function_factory_ab939a92375538a729125986017109ccf}{size} ()
+\item 
+void \hyperlink{classuran_1_1formula_1_1_function_factory_abf9ab36c0b659982eb78945e595bfe98}{remove} (String name)
+\item 
+List$<$ \hyperlink{classuran_1_1formula_1_1_function}{Function} $>$ \hyperlink{classuran_1_1formula_1_1_function_factory_aec5c1bcbc24e6b9a9a292951ede73842}{get\+All\+Functions} ()
+\item 
+void \hyperlink{classuran_1_1formula_1_1_function_factory_a7e50687c28a06332cc6a5a51b06af4dd}{update\+Value} (String name, \hyperlink{classuran_1_1formula_1_1value_1_1_value}{Value} value)
+\item 
+\hyperlink{classuran_1_1formula_1_1value_1_1_value}{Value} \hyperlink{classuran_1_1formula_1_1_function_factory_a180524cdb52b336d9383eaebe1982f16}{get\+Value} (String name)
+\item 
+\hyperlink{classuran_1_1formula_1_1_neg_formula}{Neg\+Formula} \hyperlink{classuran_1_1formula_1_1_function_factory_a362a2c48f9aa26b479f2799d9ebd55ed}{neg\+Constants} ()
+\item 
+String \hyperlink{classuran_1_1formula_1_1_function_factory_abf221e7d663c9979ad9417984ce8d82f}{to\+String} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Factory for creating functions and constants, only these functions and constants created by factory are translated to S\+M\+T2. \begin{DoxyAuthor}{Author}
+Hao Wu 
+\end{DoxyAuthor}
+
+
+Definition at line 39 of file Function\+Factory.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classuran_1_1formula_1_1_function_factory_a93f76edeabe521e3b90377bb89cbb725}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!Function\+Factory@{Function\+Factory}}
+\index{Function\+Factory@{Function\+Factory}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{Function\+Factory}]{\setlength{\rightskip}{0pt plus 5cm}uran.\+formula.\+Function\+Factory.\+Function\+Factory (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_a93f76edeabe521e3b90377bb89cbb725}
+Create a factory with default ini capacity and load factor 
+
+Definition at line 47 of file Function\+Factory.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_function_factory_a38475ef8d6732b1f8f3fca34624791e1}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!Function\+Factory@{Function\+Factory}}
+\index{Function\+Factory@{Function\+Factory}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{Function\+Factory}]{\setlength{\rightskip}{0pt plus 5cm}uran.\+formula.\+Function\+Factory.\+Function\+Factory (
+\begin{DoxyParamCaption}
+\item[{int}]{cap}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_a38475ef8d6732b1f8f3fca34624791e1}
+Specify an ini capacity. 
+
+Definition at line 53 of file Function\+Factory.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_function_factory_ab68f793821a4bc035673156bc7bc238e}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!Function\+Factory@{Function\+Factory}}
+\index{Function\+Factory@{Function\+Factory}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{Function\+Factory}]{\setlength{\rightskip}{0pt plus 5cm}uran.\+formula.\+Function\+Factory.\+Function\+Factory (
+\begin{DoxyParamCaption}
+\item[{int}]{cap, }
+\item[{float}]{load}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_ab68f793821a4bc035673156bc7bc238e}
+Specify an ini capacity and load factor 
+\begin{DoxyParams}{Parameters}
+{\em cap} & the initial capacity \\
+\hline
+{\em load} & the load factor \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 63 of file Function\+Factory.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classuran_1_1formula_1_1_function_factory_a3e2c6df5ad1b23b8b51d4775d1953a94}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!con\+Lookup@{con\+Lookup}}
+\index{con\+Lookup@{con\+Lookup}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{con\+Lookup}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Constant} uran.\+formula.\+Function\+Factory.\+con\+Lookup (
+\begin{DoxyParamCaption}
+\item[{String}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_a3e2c6df5ad1b23b8b51d4775d1953a94}
+Retrieve an existing constant from the factory 
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of a {\ttfamily constant{\ttfamily  }}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily {\ttfamily  an exisitng constant saved in the factory otherwise returns a null value. }}
+\end{DoxyReturn}
+otherwise it must be a constant 
+
+Definition at line 107 of file Function\+Factory.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_function_factory_acaf3bd05dd854be14c7b7347a5cfe970}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!create\+Constant@{create\+Constant}}
+\index{create\+Constant@{create\+Constant}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{create\+Constant}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Constant} uran.\+formula.\+Function\+Factory.\+create\+Constant (
+\begin{DoxyParamCaption}
+\item[{String}]{name, }
+\item[{{\bf Type}}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_acaf3bd05dd854be14c7b7347a5cfe970}
+Create a new constant, and save it into the hash map. No duplicated constant is allowed in the hashmap. 
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of a {\ttfamily constant{\ttfamily  }}\\
+\hline
+{\em type} & {\ttfamily {\ttfamily  the type of a {\ttfamily constant{\ttfamily  }}}}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily {\ttfamily {\ttfamily {\ttfamily  a new constant }}}}
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nullable\+Formula\+Exception} & {\ttfamily {\ttfamily {\ttfamily {\ttfamily if the name is null }}}}\\
+\hline
+{\em Duplicated\+Declaration} & {\ttfamily {\ttfamily {\ttfamily {\ttfamily if the duplicated name is identified. }}}}\\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 76 of file Function\+Factory.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_function_factory_a49fb8c9efb968aa482706abbbf2deaa3}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!create\+Function@{create\+Function}}
+\index{create\+Function@{create\+Function}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{create\+Function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function} uran.\+formula.\+Function\+Factory.\+create\+Function (
+\begin{DoxyParamCaption}
+\item[{String}]{name, }
+\item[{Type...}]{args}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_a49fb8c9efb968aa482706abbbf2deaa3}
+Create a new function with a list of arguments, and save it into the hash map. No duplicated constant is allowed in the hashmap. 
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of a {\ttfamily function{\ttfamily  }}\\
+\hline
+{\em args} & {\ttfamily {\ttfamily  the list of {\ttfamily arguments{\ttfamily  }}}}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily {\ttfamily {\ttfamily {\ttfamily  a new function }}}}
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nullable\+Formula\+Exception} & {\ttfamily {\ttfamily {\ttfamily {\ttfamily if the name is null }}}}\\
+\hline
+{\em Duplicated\+Declaration} & {\ttfamily {\ttfamily {\ttfamily {\ttfamily if the duplicated name is identified. }}}}\\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 92 of file Function\+Factory.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_function_factory_a644cfc1803a1827e9ce03c26d6cf120d}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!fun\+Lookup@{fun\+Lookup}}
+\index{fun\+Lookup@{fun\+Lookup}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{fun\+Lookup}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function} uran.\+formula.\+Function\+Factory.\+fun\+Lookup (
+\begin{DoxyParamCaption}
+\item[{String}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_a644cfc1803a1827e9ce03c26d6cf120d}
+Retrieve an existing function from the factory 
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of a {\ttfamily function{\ttfamily  }}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily {\ttfamily  an exisitng function saved in the factory otherwise returns a null value. }}
+\end{DoxyReturn}
+
+
+Definition at line 120 of file Function\+Factory.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_function_factory_aec5c1bcbc24e6b9a9a292951ede73842}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!get\+All\+Functions@{get\+All\+Functions}}
+\index{get\+All\+Functions@{get\+All\+Functions}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{get\+All\+Functions}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Function}$>$ uran.\+formula.\+Function\+Factory.\+get\+All\+Functions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_aec5c1bcbc24e6b9a9a292951ede73842}
+Return a list of functions that are perserved in the factory. 
+
+Definition at line 147 of file Function\+Factory.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_function_factory_a180524cdb52b336d9383eaebe1982f16}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!get\+Value@{get\+Value}}
+\index{get\+Value@{get\+Value}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{get\+Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} uran.\+formula.\+Function\+Factory.\+get\+Value (
+\begin{DoxyParamCaption}
+\item[{String}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_a180524cdb52b336d9383eaebe1982f16}
+Get the specific value for a function from our symbol table If no such function is found, a null value is returned. 
+
+Definition at line 174 of file Function\+Factory.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_function_factory_a362a2c48f9aa26b479f2799d9ebd55ed}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!neg\+Constants@{neg\+Constants}}
+\index{neg\+Constants@{neg\+Constants}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{neg\+Constants}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Neg\+Formula} uran.\+formula.\+Function\+Factory.\+neg\+Constants (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_a362a2c48f9aa26b479f2799d9ebd55ed}
+
+
+Definition at line 183 of file Function\+Factory.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_function_factory_abf9ab36c0b659982eb78945e595bfe98}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!remove@{remove}}
+\index{remove@{remove}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{remove}]{\setlength{\rightskip}{0pt plus 5cm}void uran.\+formula.\+Function\+Factory.\+remove (
+\begin{DoxyParamCaption}
+\item[{String}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_abf9ab36c0b659982eb78945e595bfe98}
+Remove a function. 
+
+Definition at line 139 of file Function\+Factory.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_function_factory_ab939a92375538a729125986017109ccf}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!size@{size}}
+\index{size@{size}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}int uran.\+formula.\+Function\+Factory.\+size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_ab939a92375538a729125986017109ccf}
+Return the number of functions perserved by the factory 
+
+Definition at line 133 of file Function\+Factory.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_function_factory_abf221e7d663c9979ad9417984ce8d82f}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{to\+String}]{\setlength{\rightskip}{0pt plus 5cm}String uran.\+formula.\+Function\+Factory.\+to\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_abf221e7d663c9979ad9417984ce8d82f}
+Return a string representation of all functions. 
+
+Definition at line 208 of file Function\+Factory.\+java.
+
+\hypertarget{classuran_1_1formula_1_1_function_factory_a7e50687c28a06332cc6a5a51b06af4dd}{}\index{uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}!update\+Value@{update\+Value}}
+\index{update\+Value@{update\+Value}!uran\+::formula\+::\+Function\+Factory@{uran\+::formula\+::\+Function\+Factory}}
+\subsubsection[{update\+Value}]{\setlength{\rightskip}{0pt plus 5cm}void uran.\+formula.\+Function\+Factory.\+update\+Value (
+\begin{DoxyParamCaption}
+\item[{String}]{name, }
+\item[{{\bf Value}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classuran_1_1formula_1_1_function_factory_a7e50687c28a06332cc6a5a51b06af4dd}
+Update a specific function with an assignment returned by the S\+M\+T solver. 
+
+Definition at line 158 of file Function\+Factory.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/haowu/uran/src/uran/formula/\hyperlink{_function_factory_8java}{Function\+Factory.\+java}\end{DoxyCompactItemize}
