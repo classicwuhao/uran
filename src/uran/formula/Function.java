@@ -115,7 +115,7 @@ public class Function extends AbstractFormula{
 	}
 	
 	@Override
-	/** This is for generating function application.  NOTE: toSMT2_decl() must be called 1st. */
+	/** This is for generating function application.  NOTE: Function declaration must be created 1st. */
 	public String toSMT2(){
 
 		if (this.functions==null) 

@@ -12,7 +12,6 @@
  */
 package uran.formula;
 
-import uran.formula.value.Value;
 import uran.formula.value.BoolValue;
 import uran.formula.visitor.AbstractVisitor;
 
@@ -21,6 +20,7 @@ public class BoolLiteral extends Literal{
 	
 	public BoolLiteral(){
 		//default constructor
+		super("",new Bool());
 		value=new BoolValue();
 	}
 

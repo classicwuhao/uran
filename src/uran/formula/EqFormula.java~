@@ -53,5 +53,5 @@ public final class EqFormula extends BinaryFormula{
 	}
 
 	@Override
-	public boolean isEqFormula (){return true;}
+	public isEqFormula (){return true;}
 }

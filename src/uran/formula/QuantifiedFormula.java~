@@ -29,6 +29,7 @@ public final class QuantifiedFormula extends AbstractFormula{
 	public Quantifier getQuantifier(){return quan;}
 	public AbstractFormula getFormula(){return formula;}
 	public Constant[] getVariables(){return vars.get();}
+	public Decls getDecls(){return vars;}
 	public void setVariables (Decls d){vars=d;}
 	public void setFormula (AbstractFormula f){formula=f;}
 	
@@ -44,7 +45,7 @@ public final class QuantifiedFormula extends AbstractFormula{
 	public String toSMT2(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("("+quan+" (");
-		for (int i=0;i<vars.size();i++) sb.append(" ("+ vars.get(i).toString()+") ");
+		for (int i=0;i<vars.size();i++) sb.append(vars.get(i).toString());
 		sb.append(") " + formula.toSMT2());
 		sb.append(")");
 		
