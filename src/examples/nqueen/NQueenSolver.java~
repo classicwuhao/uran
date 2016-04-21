@@ -11,10 +11,17 @@ import uran.solver.Z3SMT2Solver;
 
 public final class NQueenSolver{
 	/* a standard 8x8 board */
-	private static Board nqueen_0 = new Board(8,8);
+	private static Board nqueen_0; 
 	
 	public static void main (String args[]){
 		System.out.println("******NQueen Solver******");
+
+		if (args.length<=0){
+			System.out.println("Please specify the size of your board.");
+			return;
+		}
+		int size = Integer.parseInt(args[0]);
+		nqueen_0 = new Board(size,size);
 		Rules rules = new Rules(nqueen_0);
 		if (nqueen_0.row()<=3 && nqueen_0.col()<=3){
 			System.out.println("No models exist.");
