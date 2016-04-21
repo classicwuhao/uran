@@ -37,6 +37,7 @@ public final class NQueenSolver{
 		else{
 			System.out.println("No models exist.");
 		}
+		writer.clean();
 		System.out.println("Time spent:"+(System.currentTimeMillis()-timer)+" ms");
 	}
 
