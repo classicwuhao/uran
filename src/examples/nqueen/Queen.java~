@@ -1,0 +1,29 @@
+/* An NQueen Solver
+ * 
+ * APR-2016	
+ * Written by: Hao Wu
+ * bugs report to: haowu@cs.nuim.ie
+ */
+package examples.nqueen;
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+
+
+public final class NQueenSolver{
+
+	private static Board Nqueen = new Board(8,8);
+
+	public static void main (String args[]){
+		Rules rules = new Rules(Nqueen);
+
+	}
+
+	public static void FindSolution(){
+		
+	}
+
+
+
+}
