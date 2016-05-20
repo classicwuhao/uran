@@ -9,10 +9,17 @@ import uran.formula.smt2.SMT2Writer;
 import uran.solver.Result;
 import uran.solver.Z3SMT2Solver;
 
-public final class NQueenSolver{
+public final class NQueenSolver extends Thread{
 	/* a standard 8x8 board */
 	private static Board nqueen_0; 
-	
+	private static int counter = 0;
+	private Rules rules;
+
+	public NQueenSolver(Rules rules){
+		this.rules = rules;
+		this.counter = counter;
+	}
+
 	public static void main (String args[]){
 		System.out.println("******NQueen Solver******");
 
@@ -26,12 +33,22 @@ public final class NQueenSolver{
 		if (nqueen_0.row()<=3 && nqueen_0.col()<=3){
 			System.out.println("No models exist.");
 			return;
-		}	
-		FindSolution(rules);
+		}
+
+		NQueenSolver solverThread = new NQueenSolver(rules);
+		/* setting time out for 40 seconds. */
+		Thread threadCounter = new ThreadCounter(solverThread,40);
+		solverThread.start();
+		threadCounter.start();
 	}
 	
+	public void run(){
+		/* We should also set time out for the solver. */
+		FindSolution(this.rules);
+	}
+
 	/* Note that for large size board, you need to detect time out issue. */
-	public static void FindSolution(Rules rules){
+	public void FindSolution(Rules rules){
 		long timer = System.currentTimeMillis();
 		
 		SMT2Writer writer = new SMT2Writer ("./nqueen.smt2",nqueen_0.getFactory(),rules.EncodeRules());
