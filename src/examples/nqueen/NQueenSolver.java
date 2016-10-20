@@ -37,7 +37,7 @@ public final class NQueenSolver extends Thread{
 
 		NQueenSolver solverThread = new NQueenSolver(rules);
 		/* setting time out for 40 seconds. */
-		Thread threadCounter = new ThreadCounter(solverThread,40);
+		Thread threadCounter = new ThreadCounter(solverThread,600);
 		solverThread.start();
 		threadCounter.start();
 	}

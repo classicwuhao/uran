@@ -26,6 +26,4 @@ public final class ThreadCounter extends Thread{
 			
 		}
 	}
-
-
 }
