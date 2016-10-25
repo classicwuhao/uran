@@ -29,6 +29,8 @@ public abstract class AbstractFormula{
 	public boolean isFunction(){return false;}
 	public boolean isVariable(){return false;}
 	public boolean isEqFormula(){return false;}
+	public boolean isBitVector(){return false;}
+	
 	//public boolean isComparisonFormula(){return false;}
 	/**	just for the sake of inheritance */
 	public boolean isNull(){return this==null;}

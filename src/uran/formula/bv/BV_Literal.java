@@ -4,18 +4,20 @@
  *
  *	This is a part of my research work.
  *  haowu@cs.nuim.ie
- *  APR-2015 
+ *  OCTOBER-2016 
  *  
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  * ++++++++++++++++++++++++++++++Do or do not, there is no try.+++++++++++++++++++++++++
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  */
-package uran.formula;
+package uran.formula.bv;
 import uran.formula.AbstractFormula;
 
-public abstract class Literal extends AbstractFormula{
-	
+public abstract class BV_Literal extends AbstractFormula{
+
 	@Override
 	public boolean isLiteral(){return true;}
-		
+	public boolean isBinaryLiteral(){return false;}
+	public boolean isHexLiteral(){return false;}
+	
 }
