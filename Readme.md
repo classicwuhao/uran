@@ -23,7 +23,7 @@ When I was using [Z3](https://github.com/Z3Prover/z3) SMT solver (for the first 
 * [CVC4](https://github.com/CVC4/CVC4)  - working in progress.
 
 ##API Documentation (Partial)
-You can find detailed structure of uran [here](http://htmlpreview.github.com?https://github.com/classicwuhao/uran/docs/html/index.html).
+You can find detailed structure of uran [here](http://htmlpreview.github.com?https://github.com/classicwuhao/uran/blob/master/docs/html/index.html).
 
 
 ##License
