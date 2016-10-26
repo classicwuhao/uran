@@ -19,7 +19,7 @@ import uran.err.IllFormedFormulaException;
 /**
  * Abstract syntax tree for BitVector
  */
-public final class BitVector extends BV_Formula{
+public final class BitVector extends BV_Literal{
 	private long length;
 	private String name;
 	

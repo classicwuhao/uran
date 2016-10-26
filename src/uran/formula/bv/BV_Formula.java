@@ -19,4 +19,5 @@
  	@Override
  	public boolean isBV_Formula(){return true;}
  
+ 	public boolean isBV_Literal(){return false;}
  }

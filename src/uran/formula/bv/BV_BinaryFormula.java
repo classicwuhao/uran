@@ -13,6 +13,7 @@
 
 package uran.formula.bv;
 import uran.err.NullableFormulaException;
+import uran.err.IllFormedFormulaException;
 import uran.formula.visitor.AbstractVisitor;
 
 /** 
@@ -26,7 +27,7 @@ public abstract class BV_BinaryFormula extends BV_Formula{
 	private BV_Connective _conn;
 	
 	/**
-	 *	setup connective
+	 *	Setup the connective. This could cause possible two bit vectors have non-equal length.
 	 */	
 	public BV_BinaryFormula(BV_Connective conn){_conn=conn;}
 	
@@ -34,6 +35,7 @@ public abstract class BV_BinaryFormula extends BV_Formula{
 		_left=left;
 		_right=right;
 		_conn=conn;
+		if (!hasEqLen()) throw new IllFormedFormulaException("Error: two bit vectors must have the same length.");
 	}
 
 	/**
@@ -68,7 +70,7 @@ public abstract class BV_BinaryFormula extends BV_Formula{
  	 * @param	formula the new left node
 	 */
 	public void setLeft(BV_Formula formula){
-		if (formula.isNull()) throw new NullableFormulaException("BinaryFormula: Cannot set a fomrula to be null");
+		if (formula.isNull()) throw new NullableFormulaException("BinaryFormula: Cannot set a formula to be null");
 		_left=formula;
 	}
 
@@ -77,7 +79,7 @@ public abstract class BV_BinaryFormula extends BV_Formula{
  	 * @param	formula the new right node
 	 */
 	public void setRight(BV_Formula formula){
-		if (formula.isNull()) throw new NullableFormulaException("BinaryFormula: Cannot set a fomrula to be null");
+		if (formula.isNull()) throw new NullableFormulaException("BinaryFormula: Cannot set a formula to be null");
 		_right=formula;
 	}
 
@@ -86,7 +88,8 @@ public abstract class BV_BinaryFormula extends BV_Formula{
 	public String toString(){
 		return "("+_left.toString()+" "+_conn.toString()+" "+_right.toString()+")";
 	}
-
+	
+	
 	/**
 	 *	merge a series of binary formulas.
  	 * @param	formulas formulas to be merged
@@ -107,5 +110,14 @@ public abstract class BV_BinaryFormula extends BV_Formula{
 	@Override
 	public boolean isBV_BinaryFormula(){return true;}
 	
+	/**
+	 * @return true if both bit vectors have the same length.
+	 */
+	public boolean hasEqLen(){
+		if (_left==null || _right==null) return false;
+		if (_left.isBV_Literal() && _right.isBV_Literal()) return ((BV_Literal) _left).length() == ((BV_Literal)_right).length();
+		
+		return false;
+	}
 }
 

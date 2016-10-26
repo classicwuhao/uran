@@ -29,7 +29,7 @@ public final class BV_NotFormula extends BV_UnaryFormula {
 	public String toString(){return "(bvnot "+this.formula().toString()+")";}
 
 	@Override
-	public String toSMT2(){return "("+this.conn+" "+this.formula().toSMT2()+" )";}
+	public String toSMT2(){return "("+this.conn+" "+this.formula().toSMT2()+")";}
 
 	@Override
 	public void accept(AbstractVisitor visitor){visitor.visit(this);}

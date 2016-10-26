@@ -16,8 +16,9 @@ import uran.formula.AbstractFormula;
 public abstract class BV_Literal extends BV_Formula{
 	
 	@Override
-	public boolean isLiteral(){return true;}
+	public boolean isBV_Literal(){return true;}
 	public boolean isBinaryLiteral(){return false;}
 	public boolean isHexLiteral(){return false;}
 	
+	public abstract long length();
 }

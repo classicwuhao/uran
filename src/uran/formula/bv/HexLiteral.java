@@ -38,10 +38,25 @@ public final class HexLiteral extends BV_Literal{
 	}
 
 	/**
+	 *	Create a binary literal node.
+	 *	
+	 *	@param binary	a decimal number is encoded in a hex string.
+	 */	
+	public HexLiteral(int dec){
+		this.hex = Integer.toString(dec,16);
+	}
+
+	/**
 	 *
 	 *	@return a string representation;
 	 */
 	public String hex(){ return this.hex;}
+
+	@Override
+	/**
+	 *	@return the length*4 (binary) of this bit vector 
+	 */
+	public long length(){return this.hex.length()*4;}
 
 	private boolean check(String hex){
 		for (int i=0;i<hex.length();i++){

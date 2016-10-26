@@ -16,7 +16,7 @@ package uran.formula.bv;
 import uran.err.NullableFormulaException;
 import uran.err.MissingFormulaException;
  
- public final class BV_XorFormula extends BV_BinaryFormula{
+public final class BV_XorFormula extends BV_BinaryFormula{
  
  	public BV_XorFormula(){super(BV_Connective.XOR);}
 	

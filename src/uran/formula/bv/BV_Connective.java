@@ -27,11 +27,20 @@ public enum BV_Connective{
 	SREM {public String toString(){return "bvsrem";}},// signed remainder
 	UREM {public String toString(){return "bvurem";}},// unsigned remainder
 	SMOD {public String toString(){return "bvsmod";}},// signed modulo
-	UMOD {public String toString(){return "bvsmod";}},// unsigned modulo
+	//UMOD {public String toString(){return "bvsmod";}},// unsigned modulo
 	SHL {public String toString(){return "bvshl";}},// shift left
-	SHR {public String toString(){return "bvshl";}},// shift right
-	LSHL {public String toString(){return "bvand";}},// unsigned (logcial) shift left
-	LSHR {public String toString(){return "bvand";}},// unsigned (logcial) shift right
-	ASHL {public String toString(){return "bvand";}},//signed (arithmetical) shift left	
-	ASHR {public String toString(){return "bvand";}};//signed (arithmetical) shift right
+	SHR {public String toString(){return "bvshr";}},// shift right
+	//LSHL {public String toString(){return "bvlshl";}},// unsigned (logcial) shift left
+	LSHR {public String toString(){return "bvlshr";}},// unsigned (logcial) shift right
+	//ASHL {public String toString(){return "bvashl";}},//signed (arithmetical) shift left	
+	ASHR {public String toString(){return "bvashr";}},//signed (arithmetical) shift right
+	ULE {public String toString(){return "bvule";}},//unsigend less or equal
+	ULT {public String toString(){return "bvult";}},//unsigend less than
+	UGE {public String toString(){return "bvuge";}},//unsigend greater or equal
+	UGT {public String toString(){return "bvugt";}},//unsigend greater than
+	SLE {public String toString(){return "bvsle";}},//sigend less or equal
+	SLT {public String toString(){return "bvslt";}},//sigend less than
+	SGE {public String toString(){return "bvsge";}},//sigend greater or equal
+	SGT {public String toString(){return "bvsgt";}}//sigend greater than	
+	;
 }

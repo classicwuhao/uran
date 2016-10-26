@@ -36,7 +36,15 @@ public final class BinaryLiteral extends BV_Literal{
 		
 		this.binary = binary;
 	}
-
+	
+	/**
+	 *	Create a binary literal node.
+	 *	
+	 *	@param binary	a decimal number is encoded in a binary string.
+	 */
+	public BinaryLiteral(int dec){
+		this.binary = Integer.toString(dec,2);
+	}
 	/**
 	 *
 	 *	@return a string representation;
@@ -49,6 +57,12 @@ public final class BinaryLiteral extends BV_Literal{
 			
 		return true;
 	}
+	
+	@Override
+	/**
+	 *	@return the length of this bit vector
+	 */
+	public long length(){return this.binary.length();}
 	
 	/**
 	 *	@return	true.
