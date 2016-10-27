@@ -14,6 +14,7 @@
 package uran.formula.bv;
 
 public enum BV_Connective{
+	EQUAL {public String toString(){return "=";}},
 	AND {public String toString(){return "bvadd";}},
 	OR {public String toString(){return "bvor";}},
 	XOR {public String toString(){return "bvxor";}},

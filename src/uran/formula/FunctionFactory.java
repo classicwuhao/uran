@@ -31,7 +31,7 @@ import uran.formula.type.Sort;
 import uran.formula.value.Value;
 import uran.formula.value.BoolValue;
 import uran.formula.value.IntValue;
-
+import uran.formula.bv.BitVector;
 /** 
  *	Factory for creating functions and constants, only these functions and constants created by factory are translated to SMT2.	
  * 	@author Hao Wu
@@ -43,16 +43,26 @@ public final class FunctionFactory{
 	
 	private HashMap<Function, Value> sym_table;
 
+	/* tables for storing bit vectors. */
+	private HashMap<String, BitVector> bv_table;
+	
+	private HashMap<BitVector, Value> bv_sym_table;
+
 	/** Create a factory with default ini capacity and load factor */
 	public FunctionFactory(){
 		fun_table = new HashMap<String, Function>();
 		sym_table = new HashMap<Function, Value>();
+		bv_table = new HashMap<String, BitVector>();
+		bv_sym_table = new HashMap<BitVector, Value>();
+		
 	}
 
-	/** Specify an ini capacity. */
+	/** Specify an initial capacity for symbol tables */
 	public FunctionFactory(int cap){
 		fun_table = new HashMap<String, Function>(cap);
 		sym_table = new HashMap<Function, Value>(cap);
+		bv_table = new HashMap<String, BitVector>(cap);
+		bv_sym_table = new HashMap<BitVector, Value>(cap);
 	}
 
 	/** 
@@ -63,6 +73,8 @@ public final class FunctionFactory{
 	public FunctionFactory(int cap, float load){
 		fun_table = new HashMap<String, Function>(cap, load);
 		sym_table = new HashMap<Function, Value>(cap, load);
+		bv_table = new HashMap<String, BitVector>(cap,load);
+		bv_sym_table = new HashMap<BitVector, Value>(cap,load);
 	}
 
 	/** 
@@ -97,6 +109,32 @@ public final class FunctionFactory{
 		Function function = new Function(name,args);
 		fun_table.put(name, function);
 		return function;
+	}
+
+	/**
+	 *	Create a new bit vector with specified name and length.
+	 *	@param name		the name of a <tt>bit vector<tt>
+	 *	@param length	the specified <tt>length<tt>
+	 *  @return			a new bit vector
+	 *	@throws			NullableFormulaException if the name is empty or length is <=0.
+	 *	@throws			DuplicatedDeclaration if the bit vector already exists.
+	 */
+	public BitVector createBitVector(String name, int length){
+		if (name==null || length<=0) throw new NullableFormulaException("Error: cannot create bit vector with null name or zero length.");
+		if (bv_table.containsKey(name)) throw new DuplicatedDeclaration("Error: "+name+" for bit vector already exists.");
+		
+		BitVector bv = new BitVector(name, length);
+		bv_table.put(name, bv);
+		return bv;
+	}
+
+	/** 
+	 *  Retrieve an existing bit vector.
+	 *	@param name 	the name of a bit vector
+	 *  @return			an exisitng bit vector saved in the factory otherwise returns a null value.
+	 */
+	public BitVector bvLookup (String name){	
+		return (!bv_table.containsKey(name)) ? null : bv_table.get(name);
 	}
 
 	/** 
@@ -150,6 +188,19 @@ public final class FunctionFactory{
 		/* no need for checking for null exception */
 		for (String name : fun_table.keySet()) decls.add(fun_table.get(name));
 		return decls;
+	}
+
+	/**
+	 *	
+	 *	@return 	all the bit vectors that are perserved in the factory.
+	 */	
+	
+	public List<BitVector> getAllBitVectors(){
+		List<BitVector> bvs = new ArrayList<BitVector>();
+		
+		for (String name : bv_table.keySet()) bvs.add(bv_table.get(name));
+
+		return bvs;
 	}
 	
 	/**

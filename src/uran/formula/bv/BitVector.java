@@ -58,7 +58,7 @@ public final class BitVector extends BV_Literal{
 	
 	@Override
 	public String toSMT2(){
-		return this.toString();
+		return this.name; //remember that we only use its name, not the definition.
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public final class BitVector extends BV_Literal{
 	
 	@Override
 	public String toString(){
-		return this.name+"(_ BitVec "+ this.length +")";
+		return this.name+" (_ BitVec "+ this.length +")"; //remember that we use the definition here just for declaration.
 	}
 
 	/**

@@ -30,6 +30,14 @@ public final class test1{
 		BV_XorFormula bv_f3 = new BV_XorFormula (l,l1);
 		ColorPrint.println("formula:"+ new BV_NotFormula(l).toSMT2(),Color.BLUE);
 		
+		FunctionFactory factory = new FunctionFactory(512, 0.75f);
+		BitVector bv1 = factory.createBitVector("bv1",4);
+		BitVector bv2 = factory.createBitVector("bv2",4);
+		BitVector bv3 = factory.createBitVector("bv3",4);
+		
+		List<AbstractFormula> formulas = new ArrayList<AbstractFormula>();
+		SMT2Writer writer = new SMT2Writer("./test/bv_test1.smt2", factory, formulas);
+				
 	}
 	
 }
