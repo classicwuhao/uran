@@ -38,6 +38,9 @@ import uran.formula.FunctionFactory;
 import uran.formula.bv.BV_BinaryFormula;
 import uran.formula.bv.BV_Literal;
 import uran.formula.bv.BV_AndFormula;
+import uran.formula.bv.BV_NotFormula;
+import uran.formula.bv.BV_UnaryFormula;
+import uran.formula.bv.BV_Formula;
 import uran.formula.bv.BitVector;
 import uran.formula.bv.BinaryLiteral;
 import uran.formula.bv.HexLiteral;
@@ -93,15 +96,18 @@ public final class SMT2Writer extends AbstractVisitor implements Runnable{
 	public void visit (ImpliesFormula f){assemble(f);}
 	public void visit (BoolLiteral l){assemble(l);}
 	public void visit (NumLiteral l){assemble(l);}
+	public void visit (BV_Formula f){assemble(f);}
+	public void visit (BV_Literal l){assemble(l);}
+	public void visit (BV_BinaryFormula f){;}
+	public void visit (BV_NotFormula f){assemble(f);}
+	
+	//public void visit (BV_UnaryFormula f){assemble(f);}
 	//public void visit (AppliedFunction f){assemble(f);}
 	public void visit (Decls d){; /* do nothing */ }
 	public void run(){
 		
 	}
-	
-	
-	public void visit (BV_Literal l){assemble(l);}
-	
+		
 	private void assemble(AbstractFormula formula){
 		writer.println("("+ASSERT+" "+formula.toSMT2()+ ")");
 	}

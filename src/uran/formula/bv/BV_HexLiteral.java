@@ -19,18 +19,18 @@ import uran.err.IllFormedFormulaException;
 /**
  * Abstract syntax tree for binary literal
  */
-public final class HexLiteral extends BV_Literal{
+public final class BV_HexLiteral extends BV_Literal{
 
 	private String hex;
 
 	/* disable the default constructor */
-	private HexLiteral(){}
+	private BV_HexLiteral(){}
 
 	/**
 	 *	Create a hex literal node.	
 	 * @param hex	a string of 0s and 1s.	
 	 */
-	public HexLiteral(String hex){
+	public BV_HexLiteral(String hex){
 		if (hex==null) throw new IllFormedFormulaException("Error: name cannot be null.");
 		if (hex.length()<=0) throw new IllFormedFormulaException("Error: the name is not specified.");
 		
@@ -42,7 +42,7 @@ public final class HexLiteral extends BV_Literal{
 	 *	
 	 *	@param binary	a decimal number is encoded in a hex string.
 	 */	
-	public HexLiteral(int dec){
+	public BV_HexLiteral(int dec){
 		this.hex = Integer.toString(dec,16);
 	}
 

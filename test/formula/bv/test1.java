@@ -36,6 +36,10 @@ public final class test1{
 		BitVector bv3 = factory.createBitVector("bv3",4);
 		
 		List<AbstractFormula> formulas = new ArrayList<AbstractFormula>();
+		formulas.add(new EqFormula(bv1,new BV_AndFormula(bv1,bv2)));
+		formulas.add(new EqFormula(bv1,new BV_OrFormula(bv2, bv3)));
+		formulas.add(new EqFormula(bv2,new BV_XorFormula(bv1, bv3)));
+		formulas.add(new EqFormula(bv3,new BV_ArithmeticFormula(BV_Connective.ADD,bv1, new BV_HexLiteral(15))));
 		SMT2Writer writer = new SMT2Writer("./test/bv_test1.smt2", factory, formulas);
 				
 	}

@@ -49,7 +49,7 @@ public final class BitVector extends BV_Literal{
 	/**
 	 *	@return	the specified length.
 	 */
-	public long length(){return this.length();}
+	public long length(){return this.length;}
 	
 	
 	/**

@@ -15,7 +15,7 @@ public class testFormula{
 		Case6();Case7();Case8();Case9();Case10();
 		Case11();Case12();Case13();Case14();
 	}
-
+	
 	public static void Case1(){
 		ColorPrint.println("testing case 1",Color.BLUE);
 		BoolLiteral[] vars = new BoolLiteral[10];
