@@ -7,6 +7,7 @@ When I was using the [Z3](https://github.com/Z3Prover/z3) SMT solver to solve so
 * Boolean Circuit Gate.
 * Quantifiers.
 * Arithmetic Formula.
+* Bit Vector.
 * Increment SMT Solving.
 * Iterative SMT Solving. 
 
@@ -15,7 +16,7 @@ When I was using the [Z3](https://github.com/Z3Prover/z3) SMT solver to solve so
 * [SMT2](http://smtlib.cs.uiowa.edu/language.shtml) (SMT Solvers)
 
 ##Work in Progress
-* Bit Vector Formula.
+* Array.
 * Compact Sized Formula Generation.
 
 ##Supported SMT Solvers:
