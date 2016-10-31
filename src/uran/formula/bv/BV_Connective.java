@@ -15,13 +15,13 @@ package uran.formula.bv;
 
 public enum BV_Connective{
 	EQUAL {public String toString(){return "=";}},
-	AND {public String toString(){return "bvadd";}},
+	AND {public String toString(){return "bvand";}},
 	OR {public String toString(){return "bvor";}},
 	XOR {public String toString(){return "bvxor";}},
 	NOT {public String toString(){return "bvnot";}},
 	NOR {public String toString(){return "bvnor";}},
 	NAND{public String toString(){return "bvnand";}},
-	ADD {public String toString(){return "bvand";}},
+	ADD {public String toString(){return "bvadd";}},
 	SUB {public String toString(){return "bvsub";}},
 	NEG {public String toString(){return "bvneg";}},
 	MUL {public String toString(){return "bvmul";}},

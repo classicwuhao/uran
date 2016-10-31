@@ -35,7 +35,8 @@ public abstract class BV_BinaryFormula extends BV_Formula{
 		_left=left;
 		_right=right;
 		_conn=conn;
-		if (!hasEqLen()) throw new IllFormedFormulaException("Error: two bit vectors must have the same length.");
+		
+		//if (!hasEqLen()) throw new IllFormedFormulaException("Error: two bit vectors must have the same length.");
 	}
 
 	/**

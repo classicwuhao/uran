@@ -13,7 +13,7 @@ import test.formula.*;
 public final class test1{
 	public static void main (String args[]){
 		ColorPrint.println("*****Bit Vector Test Case 1*****\n",Color.WHITE);
-		case1();case2();case3();
+		case1();case2();case3();case4();
 	}
 	
 	public static void case1(){
@@ -49,7 +49,7 @@ public final class test1{
 		Result result = solver.solve();
 		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
 		ColorPrint.println(result.toString(),Color.WHITE);
-		ColorPrint.println(factory.toString(),Color.WHITE);
+		if (result==Result.SAT) ColorPrint.println(factory.toString(),Color.WHITE);
 		ColorPrint.println("leaving case 1",Color.BLUE);		
 		
 	}
@@ -77,7 +77,7 @@ public final class test1{
 		Result result = solver.solve();
 		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
 		ColorPrint.println(result.toString(),Color.WHITE);
-		ColorPrint.println(factory.toString(),Color.WHITE);
+		if (result==Result.SAT) ColorPrint.println(factory.toString(),Color.WHITE);
 		ColorPrint.println("leaving case 2",Color.BLUE);
 
 	}
@@ -104,9 +104,30 @@ public final class test1{
 		ColorPrint.println(result.toString(),Color.WHITE);
 		if (result==Result.SAT)	ColorPrint.println(factory.toString(),Color.WHITE);
 		ColorPrint.println("leaving case 3",Color.BLUE);
-
 	}
 
+	public static void case4(){
+		long timer = System.currentTimeMillis();
+		ColorPrint.println("entering case 4",Color.BLUE);
+		FunctionFactory factory = new FunctionFactory(512, 0.75f);
+		BitVector x = factory.createBitVector("x",64);
+		BitVector y = factory.createBitVector("y",64);
+		
+		List<AbstractFormula> formulas = new ArrayList<AbstractFormula>();
+		BV_NotFormula f1 = new BV_NotFormula(x);
+		BV_NotFormula f2 = new BV_NotFormula(y);
+		BV_AndFormula f3 = new BV_AndFormula (f1, f2);
+		BV_NotFormula f4 = new BV_NotFormula(new BV_OrFormula (x,y));
+		
+		formulas.add(new NegFormula(new EqFormula(f3, f4)));
+		SMT2Writer writer = new SMT2Writer("./test/bv_test4.smt2", factory, formulas);
+		Z3SMT2Solver solver = new Z3SMT2Solver(writer);
+		Result result = solver.solve();
+		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
+		ColorPrint.println(result.toString(),Color.WHITE);
+		if (result==Result.SAT)	ColorPrint.println(factory.toString(),Color.WHITE);
+		ColorPrint.println("leaving case 4",Color.BLUE);
+	}
 
 
 }
