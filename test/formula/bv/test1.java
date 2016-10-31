@@ -5,6 +5,7 @@ import uran.formula.value.*;
 import uran.formula.type.*;
 import uran.formula.smt2.*;
 import uran.formula.bv.*;
+import uran.solver.*;
 import java.util.*;
 import com.microsoft.z3.*;
 import test.formula.*;
@@ -16,7 +17,7 @@ public final class test1{
 	}
 	
 	public static void case1(){
-		
+		long timer = System.currentTimeMillis();
 		BinaryLiteral l = new BinaryLiteral(240);
 		ColorPrint.println("display binary literal:"+l,Color.BLUE);
 		HexLiteral l1 = new HexLiteral(20);
@@ -40,8 +41,16 @@ public final class test1{
 		formulas.add(new EqFormula(bv1,new BV_OrFormula(bv2, bv3)));
 		formulas.add(new EqFormula(bv2,new BV_XorFormula(bv1, bv3)));
 		formulas.add(new EqFormula(bv3,new BV_ArithmeticFormula(BV_Connective.ADD,bv1, new BV_HexLiteral(15))));
+		formulas.add(new EqFormula(bv1, new BV_HexLiteral(15)));
+
 		SMT2Writer writer = new SMT2Writer("./test/bv_test1.smt2", factory, formulas);
-				
+		Z3SMT2Solver solver = new Z3SMT2Solver(writer);
+		Result result = solver.solve();
+		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
+		ColorPrint.println(result.toString(),Color.WHITE);
+		ColorPrint.println(factory.toString(),Color.WHITE);
+		ColorPrint.println("leaving case 1",Color.BLUE);		
+		
 	}
 	
 }

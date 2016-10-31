@@ -89,8 +89,11 @@ public final class Z3SMT2Solver{
 				factory.updateValue(cons[i].getName().toString(),
 				new IntValue(Integer.parseInt(((IntExpr)expr).toString())));
 			}
+			else if (expr.isBV()){
+				factory.updateBV(cons[i].getName().toString(), new IntValue(((BitVecNum)expr).getInt()));
+			}
 		}
-
+		
 		/* interpreted functions */
 		FuncDecl func[] = model.getFuncDecls();
 		FuncInterp p;

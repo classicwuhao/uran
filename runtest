@@ -1,5 +1,5 @@
 #!/bin/bash
 PATH="build/classes"
 JAVA=/usr/bin/java
-$JAVA -cp "build/classes/" test.formula.bv.test1
+$JAVA -cp "build/classes/:/home/haowu/z3/build/com.microsoft.z3.jar" test.formula.bv.test1
 

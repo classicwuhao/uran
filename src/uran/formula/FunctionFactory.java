@@ -218,6 +218,17 @@ public final class FunctionFactory{
 		sym_table.put(fun, value);
 	}
 
+
+	public void updateBV (String name, IntValue value){
+		if (value==null) throw new NullableFormulaException("Error: value cannot be null.");
+		BitVector bv = this.bvLookup(name);
+
+		if (bv==null) throw new NullableFormulaException("Error: bit vector "+name+" does not exist.");
+		
+		bv.setValue(value);
+		bv_sym_table.put(bv,value);
+	}
+
 	/**
 	 * Get the specific value for a function from our symbol table
 	 * If no such function is found, a null value is returned.
@@ -262,6 +273,9 @@ public final class FunctionFactory{
 		sb.append("{\n");
 		for (String name : fun_table.keySet())
 			sb.append("<"+name+":"+sym_table.get(fun_table.get(name))+"> ");
+		for (String name : bv_table.keySet())
+			sb.append("<"+name+":"+bv_table.get(name).value()+"> ");
+		
 		sb.append("\n }");
 		return sb.toString();
 	}	

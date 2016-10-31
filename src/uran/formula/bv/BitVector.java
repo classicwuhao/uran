@@ -4,7 +4,7 @@
  *
  *	This is a part of my research work.
  *  haowu@cs.nuim.ie
- *  OCTOBER-2016
+ *  OCT-2016
  *  
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  * ++++++++++++++++++++++++++++++Do or do not, there is no try.+++++++++++++++++++++++++
@@ -15,6 +15,7 @@ package uran.formula.bv;
 import uran.formula.AbstractFormula;
 import uran.formula.visitor.AbstractVisitor;
 import uran.err.IllFormedFormulaException;
+import uran.formula.value.IntValue;
 
 /**
  * Abstract syntax tree for BitVector
@@ -22,10 +23,11 @@ import uran.err.IllFormedFormulaException;
 public final class BitVector extends BV_Literal{
 	private long length;
 	private String name;
+	private IntValue value;
 	
 	/* disable the default constructor */
 	private BitVector(){}
-
+	
 	/**
 	 * Create a new bit vector with a specified name and length
 	 * @Param name		the specified name (the name cannot be null must contain some characters).
@@ -71,9 +73,18 @@ public final class BitVector extends BV_Literal{
 	}	
 
 	/**
+	 *	@return	the value in decimal.
+	 */	
+	public int value(){ return value.getValue();}
+
+	/**
+	 *	@Param	value	a value that is retrieved from SMT solver.
+	 */	
+	public void setValue(IntValue value){ this.value = value;}
+
+	/**
 	 *	@return	the string representation of a BitVector.
 	 */
-	
 	@Override
 	public String toString(){
 		return this.name+" (_ BitVec "+ this.length +")"; //remember that we use the definition here just for declaration.
