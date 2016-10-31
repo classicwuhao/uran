@@ -13,12 +13,13 @@ import test.formula.*;
 public final class test1{
 	public static void main (String args[]){
 		ColorPrint.println("*****Bit Vector Test Case 1*****\n",Color.WHITE);
-		case1();
+		case1();case2();
 	}
 	
 	public static void case1(){
 		long timer = System.currentTimeMillis();
 		BinaryLiteral l = new BinaryLiteral(240);
+		ColorPrint.println("entering case 1",Color.BLUE);
 		ColorPrint.println("display binary literal:"+l,Color.BLUE);
 		HexLiteral l1 = new HexLiteral(20);
 		ColorPrint.println("display hexadecimal literal:"+l1,Color.BLUE);
@@ -53,6 +54,34 @@ public final class test1{
 		
 	}
 	
+
+	public static void case2(){
+		long timer = System.currentTimeMillis();
+		ColorPrint.println("entering case 2",Color.BLUE);
+		FunctionFactory factory = new FunctionFactory(512, 0.75f);
+		BitVector bv1 = factory.createBitVector("bv1",8);
+		BitVector bv2 = factory.createBitVector("bv2",8);
+		BitVector bv3 = factory.createBitVector("bv3",8);
+		
+		List<AbstractFormula> formulas = new ArrayList<AbstractFormula>();
+		formulas.add(new EqFormula(bv1,new BV_AndFormula(bv1,bv2)));
+		formulas.add(new EqFormula(bv1,new BV_OrFormula(bv2, bv3)));
+		formulas.add(new EqFormula(bv2,new BV_XorFormula(bv1, bv3)));
+		formulas.add(new EqFormula(bv2,new BV_NandFormula(bv1, bv3)));
+		formulas.add(new EqFormula(bv2,new BV_NorFormula(bv2, bv1)));
+		formulas.add(new EqFormula(bv3,new BV_ArithmeticFormula(BV_Connective.ADD,bv1, new BV_HexLiteral(255))));
+		formulas.add(new EqFormula(bv1, new BV_HexLiteral(255)));
+
+		SMT2Writer writer = new SMT2Writer("./test/bv_test2.smt2", factory, formulas);
+		Z3SMT2Solver solver = new Z3SMT2Solver(writer);
+		Result result = solver.solve();
+		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
+		ColorPrint.println(result.toString(),Color.WHITE);
+		ColorPrint.println(factory.toString(),Color.WHITE);
+		ColorPrint.println("leaving case 2",Color.BLUE);
+
+	}
+
 }
 	
 	
