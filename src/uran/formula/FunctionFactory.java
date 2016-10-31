@@ -230,6 +230,17 @@ public final class FunctionFactory{
 	}
 
 	/**
+	 * Get the specific value for a bit vector from our symbol table
+	 * If no such bit vector is found, a null value is returned.
+	 */	
+	public int getBV_Value(String name){
+		BitVector bv = bv_table.get(name);
+		if (bv == null) throw new NullableFormulaException("Error: bit vector "+name+" does not exist.");
+		
+		return bv.value();
+	}
+
+	/**
 	 * Get the specific value for a function from our symbol table
 	 * If no such function is found, a null value is returned.
 	 */
@@ -242,6 +253,9 @@ public final class FunctionFactory{
 				;
 	}
 
+	/**
+	 * Negate all the constants defined in the constant table.	
+	 */		
 	public NegFormula negConstants(){
 		List <AbstractFormula> formulas = new ArrayList<AbstractFormula>();
 		
@@ -257,6 +271,7 @@ public final class FunctionFactory{
 				if (iv==null) continue;
 				formulas.add(new EqFormula(fun, new NumLiteral(iv.getValue())));
 			}
+
 		}
 		
 		AbstractFormula[] tmp = new AbstractFormula[formulas.size()];
