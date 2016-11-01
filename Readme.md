@@ -1,7 +1,7 @@
 #URAN
 
 ##Motivation
-When I was using the [Z3](https://github.com/Z3Prover/z3) SMT solver to solve some challenging problems many years ago, I often found myself spend most of the time on programming all kinds of formulas.  This significantly slow down my development.  So I decide to build my own set of classes that can help me quickly construct the formulas I want and use them to interact with solver.  Now, I constantly use uran to solve all kinds of interesting problems for my own research.  In short, uran is an engine that you could place in between solvers and your own specification language, and totally seperate your code from the language that you design and underlying solvers.
+When I was using the [Z3](https://github.com/Z3Prover/z3) SMT solver to solve some challenging problems many years ago, I often found myself spend most of the time on programming all kinds of formulas.  This significantly slow down my development.  So I decide to build my own set of classes that can help me quickly construct the formulas I want and use them to interact with solver.  Now, I constantly use uran to solve all kinds of interesting problems for my own research.  In short, uran is an engine that you could place in between solvers and your own specification language, and totally seperate your code for the language that you design from underlying solvers.
 
 ##Supported Features
 * Boolean Circuit Gate.
