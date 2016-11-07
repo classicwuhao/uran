@@ -90,7 +90,11 @@ public final class Z3SMT2Solver{
 				new IntValue(Integer.parseInt(((IntExpr)expr).toString())));
 			}
 			else if (expr.isBV()){
+				System.out.println(expr);
 				factory.updateBV(cons[i].getName().toString(), new IntValue(((BitVecNum)expr).getInt()));
+			}
+			else{
+				System.out.println(expr);
 			}
 		}
 		

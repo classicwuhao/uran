@@ -217,14 +217,14 @@ public final class FunctionFactory{
 		}
 		sym_table.put(fun, value);
 	}
-
-
+	
 	public void updateBV (String name, IntValue value){
 		if (value==null) throw new NullableFormulaException("Error: value cannot be null.");
 		BitVector bv = this.bvLookup(name);
-
+		
 		if (bv==null) throw new NullableFormulaException("Error: bit vector "+name+" does not exist.");
 		
+		System.out.println(name);
 		bv.setValue(value);
 		bv_sym_table.put(bv,value);
 	}

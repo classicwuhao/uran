@@ -3,10 +3,10 @@
 
 ;declarations generated
 
-(declare-const x (_ BitVec 64))
-(declare-const y (_ BitVec 64))
+(declare-const x (_ BitVec 4))
+(declare-const y (_ BitVec 4))
 
 ;formula(s) generated
-(assert (not (= (bvand (bvnot x) (bvnot y)) (bvnot (bvor x y))) ))
+(assert (= (bvand x y) #x8))
 
  ;end of formula 

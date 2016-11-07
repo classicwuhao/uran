@@ -13,7 +13,7 @@ import test.formula.*;
 public final class test1{
 	public static void main (String args[]){
 		ColorPrint.println("*****Bit Vector Test Case 1*****\n",Color.WHITE);
-		case1();case2();case3();case4();
+		case1();case2();case3();case4();case5();
 	}
 	
 	public static void case1(){
@@ -128,6 +128,31 @@ public final class test1{
 		if (result==Result.SAT)	ColorPrint.println(factory.toString(),Color.WHITE);
 		ColorPrint.println("leaving case 4",Color.BLUE);
 	}
+
+	public static void case5(){
+		long timer = System.currentTimeMillis();
+		ColorPrint.println("entering case 5",Color.BLUE);
+		FunctionFactory factory = new FunctionFactory(512, 0.75f);
+		BitVector x = factory.createBitVector("x",4);
+		BitVector y = factory.createBitVector("y",4);
+		
+		List<AbstractFormula> formulas = new ArrayList<AbstractFormula>();
+		BV_NotFormula f1 = new BV_NotFormula(x);
+		BV_NotFormula f2 = new BV_NotFormula(y);
+		BV_AndFormula f3 = new BV_AndFormula (x, y);
+		formulas.add( new EqFormula (f3, new BV_HexLiteral(1<<3)));
+		
+		SMT2Writer writer = new SMT2Writer("./test/bv_test5.smt2", factory, formulas);
+		Z3SMT2Solver solver = new Z3SMT2Solver(writer);
+		
+		Result result = solver.solve();
+		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
+		ColorPrint.println(result.toString(),Color.WHITE);
+		ColorPrint.println("getting results...",Color.WHITE);
+		if (result==Result.SAT)	ColorPrint.println(factory.toString(),Color.WHITE);
+		ColorPrint.println("leaving case 5",Color.BLUE);
+	}
+
 
 
 }

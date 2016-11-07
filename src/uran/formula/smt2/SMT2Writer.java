@@ -98,7 +98,7 @@ public final class SMT2Writer extends AbstractVisitor implements Runnable{
 	public void visit (NumLiteral l){assemble(l);}
 	public void visit (BV_Formula f){assemble(f);}
 	public void visit (BV_Literal l){assemble(l);}
-	public void visit (BV_BinaryFormula f){;}
+	public void visit (BV_BinaryFormula f){assemble(f);}
 	public void visit (BV_NotFormula f){assemble(f);}
 	
 	//public void visit (BV_UnaryFormula f){assemble(f);}
