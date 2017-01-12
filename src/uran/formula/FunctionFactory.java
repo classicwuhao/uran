@@ -32,6 +32,8 @@ import uran.formula.value.Value;
 import uran.formula.value.BoolValue;
 import uran.formula.value.IntValue;
 import uran.formula.bv.BitVector;
+import uran.formula.array.ArrayEx;
+
 /** 
  *	Factory for creating functions and constants, only these functions and constants created by factory are translated to SMT2.	
  * 	@author Hao Wu
@@ -47,6 +49,11 @@ public final class FunctionFactory{
 	private HashMap<String, BitVector> bv_table;
 	
 	private HashMap<BitVector, Value> bv_sym_table;
+
+	/* tables for array type, later will change to all generic types: set, bag, list, etc */
+	private HashMap<String, ArrayEx<Type,Type>> array_table;
+
+	/* do we need to constrcut a model for an array? */
 
 	/** Create a factory with default ini capacity and load factor */
 	public FunctionFactory(){
@@ -126,6 +133,24 @@ public final class FunctionFactory{
 		BitVector bv = new BitVector(name, length);
 		bv_table.put(name, bv);
 		return bv;
+	}
+
+	/**
+	 *	Create an array with specified types.
+	 *	@param name	the name of an <tt> array <tt>
+	 *  @param T1	the type of index
+	 *  @param T2 	the type of value
+	 *	@throws		NullableFormulaException if the name is empty or length is <=0.
+	 *	@throws		DuplicateDeclaration if the array has already been defined.	
+	 */
+	public ArrayEx<? extends Type,? extends Type> createArray(String name, Class<? extends Type> T1, Class<? extends Type> T2){
+		if (name==null) throw new NullableFormulaException("Error: cannot create an array without specifying a name.");	
+		if (name.length()<=0) throw new NullableFormulaException("Error: name must be >=1");
+		if (array_table.containsKey(name)) throw new DuplicatedDeclaration("Error: Array: "+ name+" has already been defined.");
+		
+		//array_table.put(name, array);	
+		
+		return array;
 	}
 
 	/** 
@@ -281,7 +306,7 @@ public final class FunctionFactory{
 
 	/**
 	 * Return a string representation of all functions.	
-	 */		
+	 */	
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		/* dont have to check null exception because create methods make sure every instance of the function is not null. */
