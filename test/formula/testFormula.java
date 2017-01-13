@@ -57,8 +57,7 @@ public class testFormula{
 		ColorPrint.println("name:"+fun.name(),Color.WHITE);	
 		ColorPrint.println("arity:"+fun.arity(),Color.WHITE);
 		ColorPrint.println("return type:"+fun.getReturnType(),Color.WHITE);
-		fun.apply(c);
-		ColorPrint.println(fun.toSMT2(),Color.WHITE);
+		ColorPrint.println(fun.apply(c).toSMT2(),Color.WHITE);
 		ColorPrint.println("leaving case 3\n\n ",Color.BLUE);
 	}
 
@@ -74,10 +73,10 @@ public class testFormula{
 		ColorPrint.println("arity:"+fun.arity(),Color.WHITE);
 		ColorPrint.println("return type:"+fun.getReturnType(),Color.WHITE);
 
-		fun.apply(x1,x2,x3);
-		ColorPrint.println(fun.toSMT2(),Color.WHITE);
+		//fun.apply(x1,x2,x3);
+		//ColorPrint.println(fun.toSMT2(),Color.WHITE);
 				
-		QuantifiedFormula qf = new QuantifiedFormula(uran.formula.Quantifier.FORALL,new Decls(x1,x2,x3),fun);
+		QuantifiedFormula qf = new QuantifiedFormula(uran.formula.Quantifier.FORALL,new Decls(x1,x2,x3),fun.apply(x1,x2,x3));
 		ColorPrint.println(qf.toSMT2(),Color.WHITE);
 		ColorPrint.println("leaving case 4\n\n ",Color.BLUE);
 		
@@ -233,9 +232,9 @@ public class testFormula{
 		formulas.add(FormulaBuilder.range(0,1,s1,true));
 		formulas.add(FormulaBuilder.range(0,2,s2,false));
 		
-		Scope s = new Scope();
-		s.add(new ComparisonFormula(Connective.GREATER,f2.apply(x1,x2,x3),f3.apply(x3,x4)));
-		formulas.add(s);
+		//Scope s = new Scope();
+		//s.add();
+		formulas.add(new ComparisonFormula(Connective.GREATER,f2.apply(x1,x2,x3),f3.apply(x3,x4)));
 		SMT2Writer writer = new SMT2Writer("./test/test.smt2", factory, formulas);
 		ColorPrint.println("SMT file is written.", Color.WHITE);
 		ColorPrint.println("overwrite old formulas.", Color.WHITE);

@@ -3,10 +3,10 @@
 
 ;declarations generated
 
-(declare-const x (_ BitVec 64))
-(declare-const y (_ BitVec 64))
+(declare-const a1 (Array Int Int))
+(declare-const a2 (Array Int Bool))
 
 ;formula(s) generated
-(assert (not (= (bvand (bvnot x) (bvnot y)) (bvnot (bvor x y))) ))
+(assert (= (select a1 3) 5))
 
  ;end of formula 

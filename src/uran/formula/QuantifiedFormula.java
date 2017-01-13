@@ -45,7 +45,8 @@ public final class QuantifiedFormula extends AbstractFormula{
 	public String toSMT2(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("("+quan+" (");
-		for (int i=0;i<vars.size();i++) sb.append(vars.get(i).toString());
+		//for (int i=0;i<vars.size();i++) sb.append(vars.get(i).toString());
+		sb.append(vars.toSMT2());
 		sb.append(") " + formula.toSMT2());
 		sb.append(")");
 		

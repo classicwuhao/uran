@@ -32,7 +32,8 @@ public abstract class AbstractFormula{
 	public boolean isBV_EqFormula(){return false;}
 	public boolean isBitVector(){return false;}
 	public boolean isBV_Formula(){return false;}
-	public boolean isBV_BinaryFormula(){return true;}
+	public boolean isBV_BinaryFormula(){return false;}
+	public boolean isArrayFormula(){return false;}
 	//public boolean isComparisonFormula(){return false;}
 	/**	just for the sake of inheritance */
 	public boolean isNull(){return this==null;}

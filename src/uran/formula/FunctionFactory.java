@@ -51,7 +51,7 @@ public final class FunctionFactory{
 	private HashMap<BitVector, Value> bv_sym_table;
 
 	/* tables for array type, later will change to all generic types: set, bag, list, etc */
-	private HashMap<String, ArrayEx<Type,Type>> array_table;
+	private HashMap<String, ArrayEx<? extends Type,? extends Type>> array_table;
 
 	/* do we need to constrcut a model for an array? */
 
@@ -61,7 +61,7 @@ public final class FunctionFactory{
 		sym_table = new HashMap<Function, Value>();
 		bv_table = new HashMap<String, BitVector>();
 		bv_sym_table = new HashMap<BitVector, Value>();
-		
+		array_table = new HashMap<String, ArrayEx<? extends Type, ? extends Type>>();		
 	}
 
 	/** Specify an initial capacity for symbol tables */
@@ -70,6 +70,7 @@ public final class FunctionFactory{
 		sym_table = new HashMap<Function, Value>(cap);
 		bv_table = new HashMap<String, BitVector>(cap);
 		bv_sym_table = new HashMap<BitVector, Value>(cap);
+		array_table = new HashMap<String, ArrayEx<? extends Type, ? extends Type>>(cap);
 	}
 
 	/** 
@@ -82,6 +83,7 @@ public final class FunctionFactory{
 		sym_table = new HashMap<Function, Value>(cap, load);
 		bv_table = new HashMap<String, BitVector>(cap,load);
 		bv_sym_table = new HashMap<BitVector, Value>(cap,load);
+		array_table = new HashMap<String, ArrayEx<? extends Type, ? extends Type>>(cap,load);
 	}
 
 	/** 
@@ -136,20 +138,33 @@ public final class FunctionFactory{
 	}
 
 	/**
-	 *	Create an array with specified types.
-	 *	@param name	the name of an <tt> array <tt>
-	 *  @param T1	the type of index
-	 *  @param T2 	the type of value
-	 *	@throws		NullableFormulaException if the name is empty or length is <=0.
-	 *	@throws		DuplicateDeclaration if the array has already been defined.	
+	 *	Register an array into the function table.
+	 *	@param 	array	an <tt> array <tt> 
+	 *	@throws	NullableFormulaException if the name is empty or length is <=0.
+	 *	@throws	DuplicateDeclaration if the array has already been defined.	
 	 */
-	public ArrayEx<? extends Type,? extends Type> createArray(String name, Class<? extends Type> T1, Class<? extends Type> T2){
-		if (name==null) throw new NullableFormulaException("Error: cannot create an array without specifying a name.");	
-		if (name.length()<=0) throw new NullableFormulaException("Error: name must be >=1");
-		if (array_table.containsKey(name)) throw new DuplicatedDeclaration("Error: Array: "+ name+" has already been defined.");
+	public void registerArray(ArrayEx<? extends Type, ? extends Type> array){
+		if (array == null) throw new NullableFormulaException ("Error: cannot register a null array.");
+		if (array.name()==null) throw new NullableFormulaException ("Error: array must have a name.");
+		if (array.name().length()<=0) throw new NullableFormulaException ("Error: array must have a name.");
+		if (array_table.containsKey(array.name())) throw new DuplicatedDeclaration("Error: Array: "+array.name()+" has already been defined.");
 		
-		//array_table.put(name, array);	
+		array_table.put(array.name(), array);
+	}
+	
+	/**
+	 *	Create an array with types of T1 and T2.
+	 *	@param name		the <tt>name<tt> for the array.
+	 *	@return 	an array with index type T1 and value type T2.
+	 */
+	
+	public <T1 extends Type, T2 extends Type> ArrayEx<T1,T2> createArray(String name, Class<T1> t1, Class<T2> t2){
+		if (name==null) throw new NullableFormulaException ("Error: array must have a name.");
+		if (name.length()<=0) throw new NullableFormulaException ("Error: array must have a name.");
+		if (array_table.containsKey(name)) throw new DuplicatedDeclaration("Error: Array: "+name+" has already been defined.");
 		
+		ArrayEx<T1,T2> array = new ArrayEx<T1,T2>(name,t1,t2);
+		array_table.put(array.name(),array);
 		return array;
 	}
 
@@ -219,13 +234,23 @@ public final class FunctionFactory{
 	 *	
 	 *	@return 	all the bit vectors that are perserved in the factory.
 	 */	
-	
 	public List<BitVector> getAllBitVectors(){
 		List<BitVector> bvs = new ArrayList<BitVector>();
 		
 		for (String name : bv_table.keySet()) bvs.add(bv_table.get(name));
 
 		return bvs;
+	}
+	
+	/**
+	 *	
+	 *	@return 	all the arrays that are perserved in the factory.
+	 */	
+	public List<ArrayEx<? extends Type, ? extends Type>> getAllArray(){
+		List<ArrayEx<? extends Type, ? extends Type>> arrays = new ArrayList<ArrayEx<? extends Type, ? extends Type>>();
+		for (String name : array_table.keySet()) arrays.add(array_table.get(name));
+		
+		return arrays;
 	}
 	
 	/**

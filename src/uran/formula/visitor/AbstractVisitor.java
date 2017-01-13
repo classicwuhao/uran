@@ -16,6 +16,7 @@ package uran.formula.visitor;
 
 import uran.formula.*;
 import uran.formula.bv.*;
+import uran.formula.array.*;
 
 public abstract class AbstractVisitor{
 
@@ -33,5 +34,7 @@ public abstract class AbstractVisitor{
 	public abstract void visit (BV_BinaryFormula f);
 	public abstract void visit (BV_NotFormula f);
 	public abstract void visit (BV_Literal l);
-		
+	
+	public abstract void visit (ArrayEx a);
+	public abstract void visit (SelectFormula f);
 }

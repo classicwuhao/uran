@@ -12,7 +12,11 @@
  */
 
 package uran.formula.smt2;
-
+import uran.formula.type.Type;
+import uran.formula.type.Int;
+import uran.formula.type.Bool;
+import uran.formula.type.Sort;
+import uran.formula.type.Real;
 import uran.formula.visitor.AbstractVisitor;
 import uran.formula.AbstractFormula;
 import uran.formula.ArithmeticFormula;
@@ -44,6 +48,8 @@ import uran.formula.bv.BV_Formula;
 import uran.formula.bv.BitVector;
 import uran.formula.bv.BinaryLiteral;
 import uran.formula.bv.HexLiteral;
+import uran.formula.array.ArrayEx;
+import uran.formula.array.SelectFormula;
 import uran.err.NullableFormulaException;
 import uran.err.MissFileNameException;
 import java.io.BufferedWriter;
@@ -100,7 +106,8 @@ public final class SMT2Writer extends AbstractVisitor implements Runnable{
 	public void visit (BV_Literal l){assemble(l);}
 	public void visit (BV_BinaryFormula f){assemble(f);}
 	public void visit (BV_NotFormula f){assemble(f);}
-	
+	public void visit (ArrayEx a){assemble(a);}
+	public void visit (SelectFormula f){assemble(f);}
 	//public void visit (BV_UnaryFormula f){assemble(f);}
 	//public void visit (AppliedFunction f){assemble(f);}
 	public void visit (Decls d){; /* do nothing */ }
@@ -132,6 +139,10 @@ public final class SMT2Writer extends AbstractVisitor implements Runnable{
 		List<BitVector>	bvs = factory.getAllBitVectors();
 		for (int i=0;i<bvs.size();i++)
 			writer.write("(declare-const "+ bvs.get(i).toString() +")\n");
+		
+		List<ArrayEx<? extends Type, ? extends Type>> arrays = factory.getAllArray();
+		for (int i=0;i<arrays.size();i++)
+			writer.write("(declare-const "+arrays.get(i).toString()+")\n");
 		
 		writer.write("\n;formula(s) generated\n");
 		for (int i=0;i<formulas.size();i++) formulas.get(i).accept(this);
