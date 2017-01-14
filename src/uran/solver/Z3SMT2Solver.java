@@ -18,6 +18,7 @@ import uran.formula.FunctionFactory;
 import uran.formula.smt2.SMT2Writer;
 import uran.formula.*;
 import com.microsoft.z3.*;
+import com.microsoft.z3.enumerations.*;
 import uran.formula.value.Value;
 import uran.formula.value.BoolValue;
 import uran.formula.value.IntValue;
@@ -76,28 +77,39 @@ public final class Z3SMT2Solver{
 		
 	private void updateFuns(Model model){
 		FuncDecl cons[] = model.getConstDecls();
+
+		
 		Expr expr;
 		
 		/* constants */
 		for (int i=0;i<cons.length;i++){
-			expr = model.getConstInterp(cons[i]);
-			Symbol sym = cons[i].getName();
-			if (expr.isBool()){
-				factory.updateValue(cons[i].getName().toString(),new BoolValue(expr.isTrue()));
+			Z3_sort_kind sort = cons[i].getRange().getSortKind();
+			if (sort==Z3_sort_kind.Z3_INT_SORT || sort==Z3_sort_kind.Z3_BV_SORT || sort==Z3_sort_kind.Z3_BOOL_SORT){
+				System.out.println("Arity:"+cons[i].getArity()+cons[i].toString());
+				expr = model.getConstInterp(cons[i]);
+				Symbol sym = cons[i].getName();
+				if (expr.isBool()){
+					factory.updateValue(cons[i].getName().toString(),new BoolValue(expr.isTrue()));
+				}
+				else if (expr.isInt()){
+					factory.updateValue(cons[i].getName().toString(),
+					new IntValue(Integer.parseInt(((IntExpr)expr).toString())));
+				}
+				else if (expr.isBV()){
+					System.out.println(expr);
+					factory.updateBV(cons[i].getName().toString(), new IntValue(((BitVecNum)expr).getInt()));
+				}
+				else{
+					System.out.println(expr);
+				}				
 			}
-			else if (expr.isInt()){
-				factory.updateValue(cons[i].getName().toString(),
-				new IntValue(Integer.parseInt(((IntExpr)expr).toString())));
+			else if (sort == Z3_sort_kind.Z3_ARRAY_SORT){
+				//System.out.println("Array Interpretation:");		
 			}
-			else if (expr.isBV()){
-				System.out.println(expr);
-				factory.updateBV(cons[i].getName().toString(), new IntValue(((BitVecNum)expr).getInt()));
-			}
-			else{
-				System.out.println(expr);
+			else {
+				System.out.println("Unsupported interpretation.");
 			}
 		}
-		
 		/* interpreted functions */
 		FuncDecl func[] = model.getFuncDecls();
 		FuncInterp p;
