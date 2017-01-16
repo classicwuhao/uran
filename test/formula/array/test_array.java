@@ -35,6 +35,7 @@ public final class test_array{
 		Z3SMT2Solver solver = new Z3SMT2Solver(writer);
 		
 		Result result = solver.solve();
+		ColorPrint.println(factory.toString(),Color.WHITE);
 		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
 		ColorPrint.println(result.toString(),Color.WHITE);
 		

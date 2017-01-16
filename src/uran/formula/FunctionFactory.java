@@ -201,6 +201,15 @@ public final class FunctionFactory{
 		return f.isConstant() ? null : f;
 	}
 	
+	/** 
+	 *  Retrieve an existing Array from the factory
+	 *	@param name 	the name of an <tt>array<tt>
+	 *  @return			an exisitng array registered in the factory otherwise returns a null value.
+	 */	
+	public ArrayEx<? extends Type, ? extends Type> arrayLookup(String name){
+		return (!array_table.containsKey(name)) ? null : array_table.get(name);
+	}
+	
 	private void check(String name){
 		if (fun_table.containsKey(name)) throw new DuplicatedDeclaration("Error: "+ name + " already exists.");
 	}
@@ -267,7 +276,10 @@ public final class FunctionFactory{
 		}
 		sym_table.put(fun, value);
 	}
-	
+
+	/**
+	 *	Update a specific bit vector with an assignment returned by the SMT solver.
+	 */	
 	public void updateBV (String name, IntValue value){
 		if (value==null) throw new NullableFormulaException("Error: value cannot be null.");
 		BitVector bv = this.bvLookup(name);
@@ -277,6 +289,17 @@ public final class FunctionFactory{
 		System.out.println(name);
 		bv.setValue(value);
 		bv_sym_table.put(bv,value);
+	}
+	
+	/**
+	 *	Update a specific array with an assignment returned by the SMT solver.
+	 */
+	public void updateArray(String name, String interp){
+		if (interp==null) throw new NullableFormulaException("Error: interpretation cannot be null.");
+		ArrayEx array = arrayLookup(name);
+		if (array==null) throw new NullableFormulaException("Error: array "+name+" does not exist.");
+		
+		array.setInterp(interp);
 	}
 
 	/**
@@ -340,6 +363,8 @@ public final class FunctionFactory{
 			sb.append("<"+name+":"+sym_table.get(fun_table.get(name))+"> ");
 		for (String name : bv_table.keySet())
 			sb.append("<"+name+":"+bv_table.get(name).value()+"> ");
+		for (String name : array_table.keySet())
+			sb.append("<"+name+":"+array_table.get(name).interp()+"> ");
 		
 		sb.append("\n }");
 		return sb.toString();

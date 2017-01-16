@@ -77,15 +77,13 @@ public final class Z3SMT2Solver{
 		
 	private void updateFuns(Model model){
 		FuncDecl cons[] = model.getConstDecls();
-
-		
 		Expr expr;
 		
 		/* constants */
 		for (int i=0;i<cons.length;i++){
 			Z3_sort_kind sort = cons[i].getRange().getSortKind();
+			//System.out.println("Arity:"+cons[i].getArity()+cons[i].toString());
 			if (sort==Z3_sort_kind.Z3_INT_SORT || sort==Z3_sort_kind.Z3_BV_SORT || sort==Z3_sort_kind.Z3_BOOL_SORT){
-				System.out.println("Arity:"+cons[i].getArity()+cons[i].toString());
 				expr = model.getConstInterp(cons[i]);
 				Symbol sym = cons[i].getName();
 				if (expr.isBool()){
@@ -104,7 +102,9 @@ public final class Z3SMT2Solver{
 				}				
 			}
 			else if (sort == Z3_sort_kind.Z3_ARRAY_SORT){
-				//System.out.println("Array Interpretation:");		
+				FuncInterp array_interp = model.getFuncInterp(cons[i]);
+				factory.updateArray(cons[i].getName().toString(),array_interp.toString());
+				//System.out.println("Array Interpretation:"+array_interp.toString());
 			}
 			else {
 				System.out.println("Unsupported interpretation.");
