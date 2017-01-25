@@ -50,6 +50,7 @@ import uran.formula.bv.BinaryLiteral;
 import uran.formula.bv.HexLiteral;
 import uran.formula.array.ArrayEx;
 import uran.formula.array.SelectFormula;
+import uran.formula.array.StoreFormula;
 import uran.err.NullableFormulaException;
 import uran.err.MissFileNameException;
 import java.io.BufferedWriter;
@@ -108,6 +109,7 @@ public final class SMT2Writer extends AbstractVisitor implements Runnable{
 	public void visit (BV_NotFormula f){assemble(f);}
 	public void visit (ArrayEx a){assemble(a);}
 	public void visit (SelectFormula f){assemble(f);}
+	public void visit (StoreFormula f){assemble(f);}
 	//public void visit (BV_UnaryFormula f){assemble(f);}
 	//public void visit (AppliedFunction f){assemble(f);}
 	public void visit (Decls d){; /* do nothing */ }

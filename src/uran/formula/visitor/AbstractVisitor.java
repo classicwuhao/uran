@@ -37,4 +37,6 @@ public abstract class AbstractVisitor{
 	
 	public abstract void visit (ArrayEx a);
 	public abstract void visit (SelectFormula f);
+	public abstract void visit (StoreFormula f);
+	
 }

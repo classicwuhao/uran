@@ -39,5 +39,6 @@ public final class ArrayEx <I extends Type, V extends Type> extends AbstractForm
 	public Class<V> valueType(){return this.value;}
 	public String name(){return this.name;}
 	public void setInterp(String str){this.interp = str;}
-	public String interp(){return this.interp;}	
+	public String interp(){return this.interp;}
+	
 }
