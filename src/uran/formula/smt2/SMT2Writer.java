@@ -47,7 +47,7 @@ import uran.formula.bv.BV_UnaryFormula;
 import uran.formula.bv.BV_Formula;
 import uran.formula.bv.BitVector;
 import uran.formula.bv.BinaryLiteral;
-import uran.formula.bv.HexLiteral;
+import uran.formula.bv.BV_HexLiteral;
 import uran.formula.array.ArrayEx;
 import uran.formula.array.SelectFormula;
 import uran.formula.array.StoreFormula;

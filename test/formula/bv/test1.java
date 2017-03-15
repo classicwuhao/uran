@@ -21,7 +21,7 @@ public final class test1{
 		BinaryLiteral l = new BinaryLiteral(240);
 		ColorPrint.println("entering case 1",Color.BLUE);
 		ColorPrint.println("display binary literal:"+l,Color.BLUE);
-		HexLiteral l1 = new HexLiteral(20);
+		BV_HexLiteral l1 = new BV_HexLiteral(20);
 		ColorPrint.println("display hexadecimal literal:"+l1,Color.BLUE);
 		BV_ArithmeticFormula bv_f = new BV_ArithmeticFormula(BV_Connective.ADD,l,l1);
 		ColorPrint.println("formula:"+bv_f.toSMT2(),Color.BLUE);
