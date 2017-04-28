@@ -19,14 +19,15 @@
 	<echo>Building uran...</echo>
 	 <mkdir dir="${build.classes.dir}"/>
 	 <javac srcdir="${src.dir}" destdir="${build.classes.dir}" 
-    	  deprecation="on" debug="on" listfiles="off" 
-		classpath="${com.microsoft.z3.jar}"
+    	  deprecation="on" debug="on" listfiles="off"
+		  classpath="${com.microsoft.z3.jar}"
 	   	  source="${java.sourceversion}" target="${java.targetversion}" includeantruntime="true">
 	 </javac>
 	 <echo>Leave uran...</echo>
 	 <echo>Building test cases...</echo>
  	 <javac srcdir="${test.dir}" destdir="${build.classes.dir}" 
-    	  deprecation="on" debug="on" listfiles="off" 
+    	  deprecation="on" debug="on" listfiles="off"
+		  classpath="${com.microsoft.z3.jar}"
     	  source="${java.sourceversion}" target="${java.targetversion}" includeantruntime="true">
 	 </javac>
  	 <echo>Leave uran.test</echo>
