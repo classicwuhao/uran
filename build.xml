@@ -13,8 +13,8 @@
 	<property name="test.dir"           location="${basedir}/src/test"/>
 
 	<!-- add Z3 jar files -->
-	<property name="com.microsoft.z3.jar"	location="${lib.dir}/com.microsoft.z3.jar"	/>
 	<property name="lib.dir"   location="${basedir}/lib"/>
+	<property name="com.microsoft.z3.jar"	location="${lib.dir}/com.microsoft.z3.jar"	/>
 
 <target name="build" >
 		<echo>Building uran...</echo>
@@ -27,7 +27,7 @@
 
 		<echo>Leave uran...</echo>
 </target>
-	<target name="test">
+	<target name="test" depends="build">
 		 <echo>Building test cases...</echo>
  	 	<javac srcdir="${test.dir}" destdir="${build.classes.dir}" 
     		  deprecation="on" debug="on" listfiles="off"
