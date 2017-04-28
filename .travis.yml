@@ -1,6 +1,7 @@
 language: java
 install: ant
+
 notifications:
-  slack:
+  email:
     on_success: never
-	on_failure: never
+    on_failure: never
