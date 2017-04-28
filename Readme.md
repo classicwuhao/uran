@@ -19,7 +19,7 @@ When I was using the [Z3](https://github.com/Z3Prover/z3) SMT solver to solve so
 * Array.
 * Compact Sized Formula Generation.
 
-##Supported SMT Solvers:
+## Supported SMT Solvers:
 * [Z3](https://github.com/Z3Prover/z3)
 * [CVC4](https://github.com/CVC4/CVC4) - work in progress.
 
