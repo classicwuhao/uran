@@ -11,12 +11,17 @@
 	<property name="build.dir"          location="${basedir}/build"/>
 	<property name="build.classes.dir"  location="${build.dir}/classes"/>
 
+	<!-- add Z3 jar files -->
+	<property name="com.microsoft.z3.jar"	location="${lib.dir}/com.microsoft.z3.jar"	/>
+
+
 <target name="build" >
 	<echo>Building uran...</echo>
 	 <mkdir dir="${build.classes.dir}"/>
 	 <javac srcdir="${src.dir}" destdir="${build.classes.dir}" 
     	  deprecation="on" debug="on" listfiles="off" 
-    	  source="${java.sourceversion}" target="${java.targetversion}" includeantruntime="true">
+		classpath="${com.microsoft.z3.jar}"
+	   	  source="${java.sourceversion}" target="${java.targetversion}" includeantruntime="true">
 	 </javac>
 	 <echo>Leave uran...</echo>
 	 <echo>Building test cases...</echo>
