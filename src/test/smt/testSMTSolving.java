@@ -1,11 +1,11 @@
-package test.smt;
+package uran.test.smt;
 
+import uran.test.util.*;
 import uran.formula.*;
 import uran.formula.value.*;
 import uran.formula.type.*;
 import uran.formula.smt2.*;
 import uran.solver.*;
-import test.formula.*;
 import java.util.*;
 
 public class testSMTSolving{

@@ -1,5 +1,5 @@
-package test.formula.array;
-
+package uran.test.formula.array;
+import uran.test.util.*;
 import uran.formula.*;
 import uran.formula.value.*;
 import uran.formula.type.*;
@@ -9,7 +9,6 @@ import uran.formula.array.*;
 import uran.solver.*;
 import java.util.*;
 import com.microsoft.z3.*;
-import test.formula.*;
 
 public final class test_array{
 

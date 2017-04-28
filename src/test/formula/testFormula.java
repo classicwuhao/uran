@@ -1,5 +1,6 @@
-package test.formula;
+package uran.test.formula;
 
+import uran.test.util.*;
 import uran.formula.*;
 import uran.formula.value.*;
 import uran.formula.type.*;

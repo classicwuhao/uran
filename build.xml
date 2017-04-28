@@ -6,31 +6,34 @@
 	<property name="java.sourceversion" value="1.7" />
 	<!-- source -->
 	<property name="src.dir"  location="${basedir}/src/" />
-	<property name="test.dir"  location="${basedir}/test/" />
-	<property name="lib.dir"            location="${basedir}/lib"/>
+	<property name="test.src.dir"  location="${basedir}/src/test" />
 	<!-- target -->
-	<property name="build.dir"          location="${basedir}/build"/>
+	<property name="build.dir" location="${basedir}/build"/>
 	<property name="build.classes.dir"  location="${build.dir}/classes"/>
+	<property name="test.dir"           location="${basedir}/src/test"/>
 
 	<!-- add Z3 jar files -->
 	<property name="com.microsoft.z3.jar"	location="${lib.dir}/com.microsoft.z3.jar"	/>
-
+	<property name="lib.dir"   location="${basedir}/lib"/>
 
 <target name="build" >
-	<echo>Building uran...</echo>
-	 <mkdir dir="${build.classes.dir}"/>
-	 <javac srcdir="${src.dir}" destdir="${build.classes.dir}" 
-    	  deprecation="on" debug="on" listfiles="off"
-		  classpath="${com.microsoft.z3.jar}"
-	   	  source="${java.sourceversion}" target="${java.targetversion}" includeantruntime="true">
-	 </javac>
-	 <echo>Leave uran...</echo>
-	 <echo>Building test cases...</echo>
- 	 <javac srcdir="${test.dir}" destdir="${build.classes.dir}" 
-    	  deprecation="on" debug="on" listfiles="off"
-		  classpath="${com.microsoft.z3.jar}"
-    	  source="${java.sourceversion}" target="${java.targetversion}" includeantruntime="true">
-	 </javac>
- 	 <echo>Leave uran.test</echo>
+		<echo>Building uran...</echo>
+			 <mkdir dir="${build.classes.dir}"/>
+			 <javac srcdir="${src.dir}" destdir="${build.classes.dir}" 
+    			  deprecation="on" debug="on" listfiles="off"
+				  classpath="${com.microsoft.z3.jar}"
+		   		  source="${java.sourceversion}" target="${java.targetversion}" includeantruntime="true">
+			 </javac>
+
+		<echo>Leave uran...</echo>
 </target>
+	<target name="test">
+		 <echo>Building test cases...</echo>
+ 	 	<javac srcdir="${test.dir}" destdir="${build.classes.dir}" 
+    		  deprecation="on" debug="on" listfiles="off"
+			  classpath="${com.microsoft.z3.jar}"
+    		  source="${java.sourceversion}" target="${java.targetversion}" includeantruntime="true">
+		</javac>
+		 <echo>test cases built succeeded</echo>
+	</target>
 </project>

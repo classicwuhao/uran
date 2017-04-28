@@ -1,5 +1,6 @@
-package test.formula.bv;
+package uran.test.formula.bv;
 
+import uran.test.util.*;
 import uran.formula.*;
 import uran.formula.value.*;
 import uran.formula.type.*;
@@ -8,7 +9,7 @@ import uran.formula.bv.*;
 import uran.solver.*;
 import java.util.*;
 import com.microsoft.z3.*;
-import test.formula.*;
+
 
 public final class test1{
 	public static void main (String args[]){

@@ -1,7 +1,7 @@
-package test.formula;
+package uran.test.formula;
 
 import uran.formula.cnf.*;
-
+import uran.test.util.*;
 
 public class testBooleanCircuit{
 	
