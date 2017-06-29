@@ -10,13 +10,13 @@
 	<!-- target -->
 	<property name="build.dir" location="${basedir}/build"/>
 	<property name="build.classes.dir"  location="${build.dir}/classes"/>
-	<property name="test.dir"           location="${basedir}/src/test"/>
+	<property name="test.dir"           location="${basedir}/test"/>
 
 	<!-- add Z3 jar files -->
 	<property name="lib.dir"   location="${basedir}/lib"/>
 	<property name="com.microsoft.z3.jar"	location="${lib.dir}/com.microsoft.z3.jar"	/>
-
-<target name="build" >
+	<target name="all" description="build, test"/>
+	<target name="build" >
 		<echo>Building uran...</echo>
 			 <mkdir dir="${build.classes.dir}"/>
 			 <javac srcdir="${src.dir}" destdir="${build.classes.dir}" 
@@ -24,9 +24,9 @@
 				  classpath="${com.microsoft.z3.jar}"
 		   		  source="${java.sourceversion}" target="${java.targetversion}" includeantruntime="true">
 			 </javac>
-
 		<echo>Leave uran...</echo>
-</target>
+	</target>
+	
 	<target name="test" depends="build">
 		 <echo>Building test cases...</echo>
  	 	<javac srcdir="${test.dir}" destdir="${build.classes.dir}" 
