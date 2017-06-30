@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!-- Build file for uran Written by: Hao Wu -->
-<project name="uran" default="build" basedir=".">
+<project name="uran" default="build-uran" basedir=".">
 	<!-- define Java source and target version -->
 	<property name="java.targetversion" value="1.7" />
 	<property name="java.sourceversion" value="1.7" />
 	<!-- source -->
 	<property name="src.dir"  location="${basedir}/src/" />
-	<property name="test.src.dir"  location="${basedir}/src/test" />
+	<property name="test.src.dir"  location="${basedir}/test" />
 	<!-- target -->
 	<property name="build.dir" location="${basedir}/build"/>
 	<property name="build.classes.dir"  location="${build.dir}/classes"/>
@@ -15,25 +15,30 @@
 	<!-- add Z3 jar files -->
 	<property name="lib.dir"   location="${basedir}/lib"/>
 	<property name="com.microsoft.z3.jar"	location="${lib.dir}/com.microsoft.z3.jar"	/>
-	<target name="all" description="build, test"/>
-	<target name="build" >
+
+	<target name="build-uran" depends="build, build-test"/>
+			
+	<target name="build">
 		<echo>Building uran...</echo>
-			 <mkdir dir="${build.classes.dir}"/>
-			 <javac srcdir="${src.dir}" destdir="${build.classes.dir}" 
+			<mkdir dir="${build.classes.dir}"/>
+			<javac srcdir="${src.dir}" destdir="${build.classes.dir}" 
     			  deprecation="on" debug="on" listfiles="off"
 				  classpath="${com.microsoft.z3.jar}"
 		   		  source="${java.sourceversion}" target="${java.targetversion}" includeantruntime="true">
-			 </javac>
+			</javac>
 		<echo>Leave uran...</echo>
 	</target>
-	
-	<target name="test" depends="build">
-		 <echo>Building test cases...</echo>
- 	 	<javac srcdir="${test.dir}" destdir="${build.classes.dir}" 
+
+	<target name="build-test">
+		<echo>Building test cases...</echo>
+		<mkdir dir="${build.classes.dir}"/>
+ 	 	<javac srcdir="${test.src.dir}" destdir="${build.classes.dir}" 
     		  deprecation="on" debug="on" listfiles="off"
 			  classpath="${com.microsoft.z3.jar}"
     		  source="${java.sourceversion}" target="${java.targetversion}" includeantruntime="true">
 		</javac>
-		 <echo>test cases built succeeded</echo>
+		 <echo>Leave build test cases...</echo>
 	</target>
+
+
 </project>
