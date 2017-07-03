@@ -10,13 +10,22 @@
 	<!-- target -->
 	<property name="build.dir" location="${basedir}/build"/>
 	<property name="build.classes.dir"  location="${build.dir}/classes"/>
-	<property name="test.dir"           location="${basedir}/test"/>
+	<property name="test.build.dir"     location="${build.dir}/classes/test"/>
+	
 
 	<!-- add Z3 jar files -->
 	<property name="lib.dir"   location="${basedir}/lib"/>
 	<property name="com.microsoft.z3.jar"	location="${lib.dir}/com.microsoft.z3.jar"	/>
+	<property name="junit.jar"	location="${lib.dir}/junit.jar"	/>
 
-	<target name="build-uran" depends="build, build-test"/>
+
+	<path id="classpath.test">
+		<pathelement location="${junit.jar}"/>
+	    <pathelement location="${build.classes.dir}"/>
+	</path>
+
+
+	<target name="build-uran" depends="build, build-test, run-test"/>
 			
 	<target name="build">
 		<echo>Building uran...</echo>
@@ -31,14 +40,36 @@
 
 	<target name="build-test">
 		<echo>Building test cases...</echo>
-		<mkdir dir="${build.classes.dir}"/>
- 	 	<javac srcdir="${test.src.dir}" destdir="${build.classes.dir}" 
+		<mkdir dir="${test.build.dir}"/>
+ 	 	<javac srcdir="${test.src.dir}" destdir="${test.build.dir}"
     		  deprecation="on" debug="on" listfiles="off"
-			  classpath="${com.microsoft.z3.jar}"
+			  classpath="${com.microsoft.z3.jar}:${junit.jar}:${build.classes.dir}"
     		  source="${java.sourceversion}" target="${java.targetversion}" includeantruntime="true">
+    		  <classpath refid="classpath.test" />
 		</javac>
-		 <echo>Leave build test cases...</echo>
-	</target>
+		<echo>Leave build test cases...</echo>
+	</target>		
 
+	<target name="run-test" depends="build-test">
+		<echo>Running test cases...</echo>
+		<junit haltonfailure="yes" printsummary="on">
+			<formatter type="brief" usefile="no"/>
+			<classpath>
+				<path refid="classpath.test"/>
+				<pathelement location="${test.build.dir}"/>
+				<fileset dir="${test.build.dir}" />
+			</classpath>
+			
+			<test name="uran.test.formula.testFormula" />
+			
+			<!-- batchtest fork="yes">
+				<fileset dir="${test.build.dir}">
+					<include name="**/*test*.java"/>
+				</fileset>
+			</batchtest -->
+			
+		</junit>
+		<echo>Leave test cases...</echo>
+	</target>
 
 </project>
