@@ -12,15 +12,19 @@
 	<property name="build.classes.dir"  location="${build.dir}/classes"/>
 	<property name="test.build.dir"     location="${build.dir}/classes/test"/>
 	
+	
 	<!-- add Z3 & junit.jar files -->
 	<property name="lib.dir"   location="${basedir}/lib"/>
-	<property name="com.microsoft.z3.jar"	location="${lib.dir}/com.microsoft.z3.jar"	/>
+	<property name="com.microsoft.z3.jar"	location="${lib.dir}/com.microsoft.z3.jar"/>
+	<property name="libz3.so" location="${lib.dir}/libz3.so"/>
+	<property name="libz3java.so" location="${lib.dir}/libz3java.so"/>
 	<property name="junit.jar"	location="${lib.dir}/junit.jar"	/>
 
 	<path id="classpath.test">
 		<pathelement location="${junit.jar}"/>
 	    <pathelement location="${build.classes.dir}"/>
 	    <pathelement location="${com.microsoft.z3.jar}"/>
+	    
 	</path>
 
 	<target name="build-uran" depends="build, build-test, run-test"/>
