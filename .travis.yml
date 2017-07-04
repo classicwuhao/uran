@@ -1,10 +1,6 @@
-language: java
-
-jdk:
-  - oraclejdk8
-	
+language: java	
+jdk: oraclejdk8
 install: ant
-
 notifications:
   email:
     on_success: never
