@@ -23,7 +23,16 @@ public class testFormula{
 		Case6();Case7();Case8();Case9();Case10();
 		Case11();Case12();Case13();Case14();*/
 	//}
-
+	static {
+    	try {	
+    		System.loadLibrary("z3");
+		    System.loadLibrary("z3java");
+    	} 
+    	catch (UnsatisfiedLinkError e) {
+      		System.err.println("Native code library failed to load.\n" + e);
+      		System.exit(1);
+    	}
+  }
 	@Test
 	public void test1(){
 		testFormula test = new testFormula();
