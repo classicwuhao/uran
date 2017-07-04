@@ -6,4 +6,4 @@ notifications:
     on_success: never
     on_failure: never    
 before_install:
-  - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/travis/build/classicwuhao/uran/lib
+  - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./lib
