@@ -53,7 +53,7 @@
 	<target name="run-test" depends="build-test">
 		<echo>Running test cases...</echo>
 		<junit haltonfailure="yes" printsummary="on" fork="yes">
-			<sysproperty key="java.library.path" path="${library.so.dir}"/>
+			<!-- sysproperty key="java.library.path" path="${library.so.dir}"/-->
 			<formatter type="brief" usefile="no"/>
 			<classpath>
 				<path refid="classpath.test"/>

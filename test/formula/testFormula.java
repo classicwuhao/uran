@@ -32,7 +32,8 @@ public class testFormula{
       		System.err.println("Native code library failed to load.\n" + e);
       		System.exit(1);
     	}
-  }
+  	}
+  	
 	@Test
 	public void test1(){
 		testFormula test = new testFormula();
