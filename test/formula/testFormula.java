@@ -365,7 +365,7 @@ public class testFormula{
 			ColorPrint.println("Scopes:"+solver.getNumScopes(),Color.WHITE);
 			return result0;
 		}
-		catch (Z3Exception e){
+		catch (Exception e){
 			ColorPrint.println("case failed: "+e.getMessage(), Color.RED);
 			return Status.UNSATISFIABLE;
 		}
