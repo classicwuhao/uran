@@ -20,6 +20,7 @@
 	<path id="classpath.test">
 		<pathelement location="${junit.jar}"/>
 	    <pathelement location="${build.classes.dir}"/>
+	    <pathelement location="${com.microsoft.z3.jar}"/>
 	</path>
 
 	<target name="build-uran" depends="build, build-test, run-test"/>
