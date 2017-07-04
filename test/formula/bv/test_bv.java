@@ -10,14 +10,47 @@ import uran.solver.*;
 import java.util.*;
 import com.microsoft.z3.*;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
-public final class test1{
+public final class test_bv{
 	public static void main (String args[]){
-		ColorPrint.println("*****Bit Vector Test Case 1*****\n",Color.WHITE);
-		case1();case2();case3();case4();case5();
+		ColorPrint.println("*****Bit Vector Test Suite 1*****\n",Color.WHITE);		
 	}
 	
-	public static void case1(){
+	
+	@Test
+	public void test1(){
+		test_bv test = new test_bv();
+		assertEquals(Result.UNSAT,test.Case1());
+	}
+	
+	@Test
+	public void test2(){
+		test_bv test = new test_bv();
+		assertEquals(Result.UNSAT, test.Case2());
+	}
+	
+	@Test
+	public void test3(){
+		test_bv test = new test_bv();
+		assertEquals(Result.UNSAT, test.Case3());
+	}
+	
+	@Test
+	public void test4(){
+		test_bv test = new test_bv();
+		assertEquals(Result.UNSAT, test.Case4());
+	}	
+	
+	@Test
+	public void test5(){
+		test_bv test = new test_bv();
+		assertEquals(Result.SAT, test.Case5());
+	}	
+	
+	
+	public Result Case1(){
 		long timer = System.currentTimeMillis();
 		BinaryLiteral l = new BinaryLiteral(240);
 		ColorPrint.println("entering case 1",Color.BLUE);
@@ -51,12 +84,14 @@ public final class test1{
 		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
 		ColorPrint.println(result.toString(),Color.WHITE);
 		if (result==Result.SAT) ColorPrint.println(factory.toString(),Color.WHITE);
-		ColorPrint.println("leaving case 1",Color.BLUE);		
+		ColorPrint.println("leaving case 1",Color.BLUE);
+		
+		return result;
 		
 	}
 	
 
-	public static void case2(){
+	public Result Case2(){
 		long timer = System.currentTimeMillis();
 		ColorPrint.println("entering case 2",Color.BLUE);
 		FunctionFactory factory = new FunctionFactory(512, 0.75f);
@@ -80,10 +115,12 @@ public final class test1{
 		ColorPrint.println(result.toString(),Color.WHITE);
 		if (result==Result.SAT) ColorPrint.println(factory.toString(),Color.WHITE);
 		ColorPrint.println("leaving case 2",Color.BLUE);
+		
+		return result;
 
 	}
 
-	public static void case3(){
+	public Result Case3(){
 		long timer = System.currentTimeMillis();
 		ColorPrint.println("entering case 3",Color.BLUE);
 		FunctionFactory factory = new FunctionFactory(512, 0.75f);
@@ -105,12 +142,15 @@ public final class test1{
 		ColorPrint.println(result.toString(),Color.WHITE);
 		if (result==Result.SAT)	ColorPrint.println(factory.toString(),Color.WHITE);
 		ColorPrint.println("leaving case 3",Color.BLUE);
+		
+		return result;
 	}
 
-	public static void case4(){
+	public Result Case4(){
 		long timer = System.currentTimeMillis();
 		ColorPrint.println("entering case 4",Color.BLUE);
 		FunctionFactory factory = new FunctionFactory(512, 0.75f);
+
 		BitVector x = factory.createBitVector("x",64);
 		BitVector y = factory.createBitVector("y",64);
 		
@@ -128,9 +168,11 @@ public final class test1{
 		ColorPrint.println(result.toString(),Color.WHITE);
 		if (result==Result.SAT)	ColorPrint.println(factory.toString(),Color.WHITE);
 		ColorPrint.println("leaving case 4",Color.BLUE);
+		
+		return result;
 	}
 
-	public static void case5(){
+	public Result Case5(){
 		long timer = System.currentTimeMillis();
 		ColorPrint.println("entering case 5",Color.BLUE);
 		FunctionFactory factory = new FunctionFactory(512, 0.75f);
@@ -152,9 +194,9 @@ public final class test1{
 		ColorPrint.println("getting results...",Color.WHITE);
 		if (result==Result.SAT)	ColorPrint.println(factory.toString(),Color.WHITE);
 		ColorPrint.println("leaving case 5",Color.BLUE);
+		
+		return result;
 	}
-
-
 
 }
 	

@@ -12,18 +12,15 @@
 	<property name="build.classes.dir"  location="${build.dir}/classes"/>
 	<property name="test.build.dir"     location="${build.dir}/classes/test"/>
 	
-
-	<!-- add Z3 jar files -->
+	<!-- add Z3 & junit.jar files -->
 	<property name="lib.dir"   location="${basedir}/lib"/>
 	<property name="com.microsoft.z3.jar"	location="${lib.dir}/com.microsoft.z3.jar"	/>
 	<property name="junit.jar"	location="${lib.dir}/junit.jar"	/>
-
 
 	<path id="classpath.test">
 		<pathelement location="${junit.jar}"/>
 	    <pathelement location="${build.classes.dir}"/>
 	</path>
-
 
 	<target name="build-uran" depends="build, build-test, run-test"/>
 			
@@ -61,6 +58,8 @@
 			</classpath>
 			
 			<test name="uran.test.formula.testFormula" />
+			<test name="uran.test.formula.array.test_array" />
+			<test name="uran.test.formula.bv.test_bv" />
 			
 			<!-- batchtest fork="yes">
 				<fileset dir="${test.build.dir}">

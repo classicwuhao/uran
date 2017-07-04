@@ -10,14 +10,28 @@ import uran.solver.*;
 import java.util.*;
 import com.microsoft.z3.*;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+
 public final class test_array{
 
 	public static void main (String args[]){
 		ColorPrint.println("*****Array Test Set 1*****\n",Color.WHITE);
-		case1();case2();
 	}
 
-	public static void case1(){
+	@Test
+	public void test1(){
+		test_array test = new test_array();
+		assertEquals(Result.SAT ,test.Case1());
+	}
+	
+	@Test
+	public void test2(){
+		test_array test = new test_array();
+		assertEquals(Result.SAT, test.Case2());
+	}
+	
+	public Result Case1(){
 	
 		ColorPrint.println("*****Array Test Case 1*****\n",Color.WHITE);
 		long timer = System.currentTimeMillis();
@@ -36,13 +50,16 @@ public final class test_array{
 		Z3SMT2Solver solver = new Z3SMT2Solver(writer);
 		
 		Result result = solver.solve();
+		
 		ColorPrint.println(factory.toString(),Color.WHITE);
 		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
 		ColorPrint.println(result.toString(),Color.WHITE);
 		ColorPrint.println("*****Leave Array Test Case 1*****\n",Color.WHITE);
+		return result;
+		
 	}
 	
-	public static void case2(){
+	public Result Case2(){
 		ColorPrint.println("*****Array Test Case 2*****\n",Color.WHITE);
 		long timer = System.currentTimeMillis();
 		FunctionFactory factory = new FunctionFactory(512, 0.75f);
@@ -64,6 +81,7 @@ public final class test_array{
 		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
 		ColorPrint.println(result.toString(),Color.WHITE);
 		ColorPrint.println("*****Leave Array Test Case 2*****\n",Color.WHITE);
+		return result;
 	}
 	
 		
