@@ -11,13 +11,11 @@
 	<property name="build.dir" location="${basedir}/build"/>
 	<property name="build.classes.dir"  location="${build.dir}/classes"/>
 	<property name="test.build.dir"     location="${build.dir}/classes/test"/>
-	
+	<property name="library.so.dir"     location="${basedir}/lib/"/>
 	
 	<!-- add Z3 & junit.jar files -->
 	<property name="lib.dir"   location="${basedir}/lib"/>
 	<property name="com.microsoft.z3.jar"	location="${lib.dir}/com.microsoft.z3.jar"/>
-	<property name="libz3.so" location="${lib.dir}/libz3.so"/>
-	<property name="libz3java.so" location="${lib.dir}/libz3java.so"/>
 	<property name="junit.jar"	location="${lib.dir}/junit.jar"	/>
 
 	<path id="classpath.test">
@@ -62,10 +60,10 @@
 				<fileset dir="${test.build.dir}" />
 			</classpath>
 			
+			<sysproperty key="java.library.path" value="${library.so.dir}"/>
 			<test name="uran.test.formula.testFormula" />
 			<test name="uran.test.formula.array.test_array" />
 			<test name="uran.test.formula.bv.test_bv" />
-			
 			<!-- batchtest fork="yes">
 				<fileset dir="${test.build.dir}">
 					<include name="**/*test*.java"/>
