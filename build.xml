@@ -2,8 +2,8 @@
 <!-- Build file for uran Written by: Hao Wu -->
 <project name="uran" default="build-uran" basedir=".">
 	<!-- define Java source and target version -->
-	<property name="java.targetversion" value="1.8" />
-	<property name="java.sourceversion" value="1.8" />
+	<property name="java.targetversion" value="1.7" />
+	<property name="java.sourceversion" value="1.7" />
 	<!-- source -->
 	<property name="src.dir"  location="${basedir}/src/" />
 	<property name="test.src.dir"  location="${basedir}/test" />
