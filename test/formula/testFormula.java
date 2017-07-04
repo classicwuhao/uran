@@ -22,20 +22,23 @@ public class testFormula{
 		/*Case1();Case2();Case3();Case4();Case5();
 		Case6();Case7();Case8();Case9();Case10();
 		Case11();Case12();Case13();Case14();*/
+		//System.out.println("Testing...");
+		//testFormula test = new testFormula();	
 	//}
-	static {
-    	try {	
-    		System.loadLibrary("z3");
-		    System.loadLibrary("z3java");
+  	
+  	/*static {
+    	try {
+    		System.load("../../../../../../lib/libz3.so");
+    		System.load("../../../../../../lib/libz3java.so");
     	} 
     	catch (UnsatisfiedLinkError e) {
       		System.err.println("Native code library failed to load.\n" + e);
       		System.exit(1);
     	}
-  	}
+  	}*/
   	
 	@Test
-	public void test1(){
+	public void test1(){		
 		testFormula test = new testFormula();
 		assertEquals(Status.SATISFIABLE,test.Case14());
 	}

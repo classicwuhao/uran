@@ -20,9 +20,8 @@
 
 	<path id="classpath.test">
 		<pathelement location="${junit.jar}"/>
-	    <pathelement location="${build.classes.dir}"/>
+		<pathelement location="${build.classes.dir}"/>	    
 	    <pathelement location="${com.microsoft.z3.jar}"/>
-	    
 	</path>
 
 	<target name="build-uran" depends="build, build-test, run-test"/>
@@ -53,13 +52,13 @@
 	<target name="run-test" depends="build-test">
 		<echo>Running test cases...</echo>
 		<junit haltonfailure="yes" printsummary="on" fork="yes">
-			<!-- sysproperty key="java.library.path" path="${library.so.dir}"/-->
+			<sysproperty key="java.library.path" value="${library.so.dir}"/>
 			<formatter type="brief" usefile="no"/>
 			<classpath>
 				<path refid="classpath.test"/>
 				<pathelement location="${test.build.dir}"/>
 			</classpath>
-						
+			<env key="LD_LIBRARY_PATH" path="${library.so.dir}"/>			
 			<test name="uran.test.formula.testFormula" />
 			<test name="uran.test.formula.array.test_array" />
 			<test name="uran.test.formula.bv.test_bv" />
