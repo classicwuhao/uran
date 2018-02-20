@@ -20,7 +20,7 @@
 
 	<path id="classpath.test">
 		<pathelement location="${junit.jar}"/>
-		<pathelement location="${build.classes.dir}"/>	    
+		<pathelement location="${build.classes.dir}"/>   
 	    <pathelement location="${com.microsoft.z3.jar}"/>
 	</path>
 
@@ -29,7 +29,7 @@
 	<target name="build">
 		<echo>Building uran...</echo>
 			<mkdir dir="${build.classes.dir}"/>
-			<javac srcdir="${src.dir}" destdir="${build.classes.dir}" 
+			<javac srcdir="${src.dir}" destdir="${build.classes.dir}"
     			  deprecation="on" debug="on" listfiles="off"
 				  classpath="${com.microsoft.z3.jar}"
 		   		  source="${java.sourceversion}" target="${java.targetversion}" includeantruntime="true">
@@ -47,12 +47,12 @@
     		  <classpath refid="classpath.test" />
 		</javac>
 		<echo>Leave build test cases...</echo>
-	</target>		
+	</target>
 
 	<target name="run-test" depends="build-test">
 		<echo>Running test cases...</echo>
 		<junit haltonfailure="yes" printsummary="on" fork="true">
-			<!-- env key="LD_LIBRARY_PATH" path=":${library.so.dir}" /-->
+			<env key="LD_LIBRARY_PATH" path=":${library.so.dir}" />
 			<sysproperty key="java.library.path" value="${library.so.dir}"/>
 			<formatter type="brief" usefile="no"/>
 			<classpath>
