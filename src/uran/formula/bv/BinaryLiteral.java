@@ -45,6 +45,27 @@ public final class BinaryLiteral extends BV_Literal{
 	public BinaryLiteral(int dec){
 		this.binary = Integer.toString(dec,2);
 	}
+
+	/**
+	 *	Create a binary literal node.
+	 *	
+	 *	@param binary	a decimal number is encoded in a binary string with padded zeros in front of this binary.
+	 */
+	
+	public BinaryLiteral (int dec, int n){
+		String unpadded_binary = Integer.toString(dec,2);
+		/* this is the case we need to pad zeros in front of the binary string.*/
+		this.binary = (unpadded_binary.length()!=n) ? padZeros(unpadded_binary,n) : unpadded_binary;
+	}
+
+	private String padZeros (String str, int n){
+		StringBuffer sb = new StringBuffer();
+		for (int i=0;i<n-str.length();i++) sb.append("0");
+		
+		sb.append(str);
+		return sb.toString();
+	}
+
 	/**
 	 *
 	 *	@return a string representation;
