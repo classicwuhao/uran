@@ -48,6 +48,7 @@ import uran.formula.bv.BV_Formula;
 import uran.formula.bv.BitVector;
 import uran.formula.bv.BinaryLiteral;
 import uran.formula.bv.BV_HexLiteral;
+import uran.formula.bv.BV_Extract;
 import uran.formula.array.ArrayEx;
 import uran.formula.array.SelectFormula;
 import uran.formula.array.StoreFormula;
@@ -107,6 +108,7 @@ public final class SMT2Writer extends AbstractVisitor implements Runnable{
 	public void visit (BV_Literal l){assemble(l);}
 	public void visit (BV_BinaryFormula f){assemble(f);}
 	public void visit (BV_NotFormula f){assemble(f);}
+	public void visit (BV_Extract e){assemble(e);}
 	public void visit (ArrayEx a){assemble(a);}
 	public void visit (SelectFormula f){assemble(f);}
 	public void visit (StoreFormula f){assemble(f);}
@@ -114,7 +116,7 @@ public final class SMT2Writer extends AbstractVisitor implements Runnable{
 	//public void visit (AppliedFunction f){assemble(f);}
 	public void visit (Decls d){; /* do nothing */ }
 	public void run(){
-		
+			
 	}
 		
 	private void assemble(AbstractFormula formula){
