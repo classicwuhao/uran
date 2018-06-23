@@ -58,7 +58,7 @@ public final class Z3SMT2Solver{
 		try{
 			Context ctx = new Context();
 			Solver solver = ctx.mkSolver();
-			solver.add(ctx.parseSMTLIB2File(writer.getFile(),null, null, null, null));
+			solver.add(ctx.mkAnd(ctx.parseSMTLIB2File(writer.getFile(),null, null, null, null)));
 			Status result = solver.check();
 			if (result == Status.SATISFIABLE){
 				updateFuns(solver.getModel());
