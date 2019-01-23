@@ -55,6 +55,7 @@ public final class Z3SMT2Solver{
 		/* parse SMT2 file */
 		HashMap<String, String> cfg = new HashMap<String, String>();
 		cfg.put("model","true");
+		cfg.put("produce-unsat-cores","true");
 		try{
 			Context ctx = new Context();
 			Solver solver = ctx.mkSolver();
@@ -64,8 +65,13 @@ public final class Z3SMT2Solver{
 				updateFuns(solver.getModel());
 				return Result.SAT;
 			}
-			else if (result == Status.UNSATISFIABLE)
+			else if (result == Status.UNSATISFIABLE){
+				//System.out.println(solver.getProof());
+				for (Expr c : solver.getUnsatCore()){
+					System.out.println("unsat: "+ c);
+				}
 				return Result.UNSAT;
+			}
 			else
 				return Result.UNKNOWN;
 		}
@@ -77,8 +83,9 @@ public final class Z3SMT2Solver{
 		
 	private void updateFuns(Model model){
 		FuncDecl cons[] = model.getConstDecls();
-		Expr expr;
-		
+		Sort funs[] = model.getSorts(); 
+
+		Expr expr;		
 		/* constants */
 		for (int i=0;i<cons.length;i++){
 			Z3_sort_kind sort = cons[i].getRange().getSortKind();
@@ -94,7 +101,6 @@ public final class Z3SMT2Solver{
 					new IntValue(Integer.parseInt(((IntExpr)expr).toString())));
 				}
 				else if (expr.isBV()){
-					System.out.println(expr);
 					factory.updateBV(cons[i].getName().toString(), new IntValue(((BitVecNum)expr).getInt()));
 				}
 				else{

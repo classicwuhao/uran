@@ -361,8 +361,10 @@ public final class FunctionFactory{
 		sb.append("{\n");
 		for (String name : fun_table.keySet())
 			sb.append("<"+name+":"+sym_table.get(fun_table.get(name))+"> ");
-		for (String name : bv_table.keySet())
+		for (String name : bv_table.keySet()){
+			System.err.println(name);
 			sb.append("<"+name+":"+bv_table.get(name).value()+"> ");
+		}
 		for (String name : array_table.keySet())
 			sb.append("<"+name+":"+array_table.get(name).interp()+"> ");
 		

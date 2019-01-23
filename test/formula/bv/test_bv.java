@@ -18,14 +18,13 @@ public final class test_bv{
 		ColorPrint.println("*****Bit Vector Test Suite 1*****\n",Color.WHITE);		
 	}
 	
-	
-	@Test
+	/*@Test
 	public void test1(){
 		test_bv test = new test_bv();
 		assertEquals(Result.UNSAT,test.Case1());
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	public void test2(){
 		test_bv test = new test_bv();
 		assertEquals(Result.UNSAT, test.Case2());
@@ -41,7 +40,7 @@ public final class test_bv{
 	public void test4(){
 		test_bv test = new test_bv();
 		assertEquals(Result.UNSAT, test.Case4());
-	}	
+	}*/
 	
 	@Test
 	public void test5(){
