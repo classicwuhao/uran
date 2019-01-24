@@ -28,6 +28,13 @@ public final class test{
 		assertEquals(Result.UNSAT,test.Case1());
 	}
 	
+
+	@Test
+	public void test2(){
+		test test = new test();
+		assertEquals(Result.UNSAT,test.Case2());
+	}
+
 	public Result Case1(){
 		long timer = System.currentTimeMillis();
 		FunctionFactory factory = new FunctionFactory(512, 0.75f);		
@@ -50,5 +57,46 @@ public final class test{
 	
 		return Result.UNSAT;
 	}
+
+	public Result Case2(){
+		long timer = System.currentTimeMillis();
+		FunctionFactory factory = new FunctionFactory(512, 0.75f);
+		Constant x = factory.createConstant("x", new Int());
+		Constant y = factory.createConstant("y", new Int());
+		Constant z = factory.createConstant("z", new Int());
+
+		ComparisonFormula formula1 = new ComparisonFormula(Connective.LEQ,x,new NumLiteral(new IntValue(0)));
+		ComparisonFormula formula2 = new ComparisonFormula(Connective.LESS,z,new NumLiteral(new IntValue(0)));
+		ComparisonFormula formula3 = new ComparisonFormula(Connective.GREATER, 
+			new ArithmeticFormula(Connective.PLUS,x,z), new NumLiteral(new IntValue(0)));
+		
+		ComparisonFormula formula4 = new ComparisonFormula(Connective.LESS,y,new NumLiteral(new IntValue(0)));
+		ComparisonFormula formula5 = new ComparisonFormula(Connective.GREATER, 
+				new ArithmeticFormula(Connective.PLUS,x,y), new NumLiteral(new IntValue(0)));
+		
+		List<AbstractFormula> formulas = new ArrayList<AbstractFormula>();	
+		formulas.add(new LabeledFormula(formula1,"t1"));
+		formulas.add(new LabeledFormula(formula2,"t2"));
+		formulas.add(new LabeledFormula(formula3,"t3"));
+		formulas.add(new LabeledFormula(formula4,"t4"));
+		formulas.add(new LabeledFormula(formula5,"t5"));
+
+		SMT2Writer writer = new SMT2Writer(factory, formulas);
+		SolverLauncher z3 = new SolverLauncher (Z3,writer,SolverLauncher.PRODUCE_UNSAT_CORES);
+		z3.launch();
+		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
+		List<AbstractFormula> cores = z3.cores();
+		for (AbstractFormula f : cores) System.out.println(f.toString());
+
+		return Result.UNSAT;
+	}
+
+	private void generate(){
+
+
+	}
+
+
+
 	
 }
