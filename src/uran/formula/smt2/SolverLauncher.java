@@ -146,7 +146,12 @@ public class SolverLauncher extends AbstractVisitor {
 			line=output.readLine();
 			result = parseResult(line);
 			
-			if (result==Result.UNSAT) getCores(output.readLine());
+			if (result==Result.UNSAT) {
+				String str = output.readLine();
+				System.out.println("Z3 Raw:"+str);
+				getCores(str);
+			}
+			
 			/*while ((line=output.readLine())!=null){
 				System.out.println("output:"+line);
 			}*/

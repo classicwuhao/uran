@@ -28,13 +28,18 @@ public final class test{
 		assertEquals(Result.UNSAT,test.Case1());
 	}
 	
-
 	@Test
 	public void test2(){
 		test test = new test();
 		assertEquals(Result.UNSAT,test.Case2());
 	}
 
+	@Test
+	public void tes3(){
+		test test = new test();
+		assertEquals(Result.UNSAT,test.Case3());
+	}
+	
 	public Result Case1(){
 		long timer = System.currentTimeMillis();
 		FunctionFactory factory = new FunctionFactory(512, 0.75f);		
@@ -64,6 +69,7 @@ public final class test{
 		Constant x = factory.createConstant("x", new Int());
 		Constant y = factory.createConstant("y", new Int());
 		Constant z = factory.createConstant("z", new Int());
+		List<AbstractFormula> subset = new ArrayList<AbstractFormula>();
 
 		ComparisonFormula formula1 = new ComparisonFormula(Connective.LEQ,x,new NumLiteral(new IntValue(0)));
 		ComparisonFormula formula2 = new ComparisonFormula(Connective.LESS,z,new NumLiteral(new IntValue(0)));
@@ -83,19 +89,76 @@ public final class test{
 
 		SMT2Writer writer = new SMT2Writer(factory, formulas);
 		SolverLauncher z3 = new SolverLauncher (Z3,writer,SolverLauncher.PRODUCE_UNSAT_CORES);
-		z3.launch();
+		Result result = z3.launch();
 		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
 		List<AbstractFormula> cores = z3.cores();
-		for (AbstractFormula f : cores) System.out.println(f.toString());
+		
+		for (AbstractFormula f : cores){
+			formulas.remove(f);
+			if (solve(formulas)==Result.UNSAT) continue;
+			subset.add(f);
+		}
+
+		ColorPrint.print("core:(",Color.BLUE);
+		for (AbstractFormula f: cores) ColorPrint.print(((LabeledFormula)f).label()+" ",Color.RED);
+		ColorPrint.println(")",Color.BLUE);
+
+		return result;
+	}
+
+	private Result Case3(){
+		long timer = System.currentTimeMillis();
+		FunctionFactory factory = new FunctionFactory(512, 0.75f);
+		Constant a = factory.createConstant("a", new Bool());
+		Constant b = factory.createConstant("b", new Bool());
+		List<AbstractFormula> formulas = new ArrayList<AbstractFormula>();	
+		
+		List<AbstractFormula> subset = new ArrayList<AbstractFormula>();
+		
+		AbstractFormula formula0 = new EqFormula(a,new BoolLiteral(true));
+		AbstractFormula formula1 = new OrFormula(new NegFormula(a),b);
+		AbstractFormula formula2 = new NegFormula(b);
+		AbstractFormula formula3 = new NegFormula(a);
+
+		/*subset.add (formula0);
+		subset.add (formula1);
+		subset.add (formula2);
+		subset.add (formula3);*/
+
+		formulas.add (new LabeledFormula(formula0,"c1"));
+		formulas.add (new LabeledFormula(formula1,"c2"));
+		formulas.add (new LabeledFormula(formula2,"c3"));
+		formulas.add (new LabeledFormula(formula3,"c4"));
+
+		SMT2Writer writer = new SMT2Writer(factory, formulas);
+		SolverLauncher z3 = new SolverLauncher (Z3,writer,SolverLauncher.PRODUCE_UNSAT_CORES);
+		z3.launch();
+		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
+
+		List<AbstractFormula> cores = z3.cores();
+
+		for (AbstractFormula f : cores){
+			formulas.remove(f);
+			if (solve(formulas)==Result.UNSAT) continue;
+			subset.add(f);
+		}
+
+		ColorPrint.print("core:(",Color.BLUE);
+		for (AbstractFormula f: cores) ColorPrint.print(((LabeledFormula)f).label()+" ",Color.RED);
+		ColorPrint.println(")",Color.BLUE);
 
 		return Result.UNSAT;
 	}
 
-	private void generate(){
-
-
+	private Result solve(List<AbstractFormula> formulas){
+		long timer = System.currentTimeMillis();
+		FunctionFactory factory = new FunctionFactory(512, 0.75f);
+		SMT2Writer writer = new SMT2Writer(factory, formulas);
+		SolverLauncher z3 = new SolverLauncher (Z3,writer,SolverLauncher.PRODUCE_UNSAT_CORES);
+		Result r = z3.launch();
+		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
+		return r;
 	}
-
 
 
 	
