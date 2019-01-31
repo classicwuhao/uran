@@ -8,6 +8,7 @@ import uran.formula.smt2.*;
 import uran.formula.bv.*;
 import uran.solver.*;
 import java.util.*;
+import java.io.*;
 import com.microsoft.z3.*;
 
 import static org.junit.Assert.assertEquals;
@@ -16,12 +17,20 @@ import org.junit.Test;
 
 public final class test{
 
-	private final String Z3="/home/haowu/z3/build/z3 -in";
-	
+	private String Z3="/home/haowu/z3/build/z3";
+	private final String Z3_STD_IN = " -in ";
+
 	public static void main (String args[]){
 		ColorPrint.println("*****Unsat core Test Suite 1*****\n",Color.WHITE);
+		//setZ3Path();
 	}
 	
+	@Test
+	public void test0(){
+		test test = new test();
+		assertEquals(Result.UNSAT,test.testZ3());
+	}
+
 	@Test
 	public void test1(){
 		test test = new test();
@@ -40,7 +49,45 @@ public final class test{
 		assertEquals(Result.UNSAT,test.Case3());
 	}
 	
+	private void setZ3Path(){
+		String str = System.getProperty("os.name");
+		if (str.indexOf("Mac OS X")!=-1)
+			Z3 = "/Users/haowu/z3/build/z3";
+		else
+			Z3= "/home/haowu/z3/build/z3";
+	}
+
+	private Result testZ3(){
+		setZ3Path();
+		/* check if Z3 exists or not */
+		Result result = Result.UNSAT;
+		/* do a simple SMT solving */
+
+		File f = new File (Z3);
+		if (f.exists() && !f.isDirectory()){
+			List<AbstractFormula> formulas = new ArrayList<AbstractFormula>();
+			FunctionFactory factory = new FunctionFactory(512, 0.75f);
+			Constant a = factory.createConstant("a", new Bool());
+			Constant b = factory.createConstant("b", new Bool());
+			AbstractFormula formula1 = new AndFormula (a,b);
+			AbstractFormula formula2 = new NegFormula(new OrFormula (new NegFormula (a),new NegFormula(b)));
+			formulas.add (new LabeledFormula(new NegFormula(new EqFormula(formula1, formula2)),"t1"));
+			SMT2Writer writer = new SMT2Writer(factory, formulas);
+			SolverLauncher z3 = new SolverLauncher (Z3+Z3_STD_IN,writer,SolverLauncher.PRODUCE_UNSAT_CORES);
+			result = z3.launch();
+			for (AbstractFormula formula :  z3.cores()) ColorPrint.print(formula.toSMT2(),Color.BLUE);
+		}
+		else{
+			result = Result.SAT;
+			//do nothing;
+			ColorPrint.print("z3 not found.",Color.RED);
+		}
+
+		return result;
+	}
+
 	public Result Case1(){
+		setZ3Path();
 		long timer = System.currentTimeMillis();
 		FunctionFactory factory = new FunctionFactory(512, 0.75f);		
 		Constant x1 = factory.createConstant("x1", new Bool());
@@ -54,7 +101,7 @@ public final class test{
 		formulas.add (new LabeledFormula (formula2,"t2"));
 		
 		SMT2Writer writer = new SMT2Writer(factory, formulas);
-		SolverLauncher z3 = new SolverLauncher (Z3,writer,SolverLauncher.PRODUCE_UNSAT_CORES);
+		SolverLauncher z3 = new SolverLauncher (Z3+Z3_STD_IN,writer,SolverLauncher.PRODUCE_UNSAT_CORES);
 		z3.launch();
 		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
 		List<AbstractFormula> cores = z3.cores();
@@ -64,6 +111,7 @@ public final class test{
 	}
 
 	public Result Case2(){
+		setZ3Path();
 		long timer = System.currentTimeMillis();
 		FunctionFactory factory = new FunctionFactory(512, 0.75f);
 		Constant x = factory.createConstant("x", new Int());
@@ -88,7 +136,7 @@ public final class test{
 		formulas.add(new LabeledFormula(formula5,"t5"));
 
 		SMT2Writer writer = new SMT2Writer(factory, formulas);
-		SolverLauncher z3 = new SolverLauncher (Z3,writer,SolverLauncher.PRODUCE_UNSAT_CORES);
+		SolverLauncher z3 = new SolverLauncher (Z3+Z3_STD_IN,writer,SolverLauncher.PRODUCE_UNSAT_CORES);
 		Result result = z3.launch();
 		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
 		List<AbstractFormula> cores = z3.cores();
@@ -107,6 +155,7 @@ public final class test{
 	}
 
 	private Result Case3(){
+		setZ3Path();
 		long timer = System.currentTimeMillis();
 		FunctionFactory factory = new FunctionFactory(512, 0.75f);
 		Constant a = factory.createConstant("a", new Bool());
@@ -131,7 +180,7 @@ public final class test{
 		formulas.add (new LabeledFormula(formula3,"c4"));
 
 		SMT2Writer writer = new SMT2Writer(factory, formulas);
-		SolverLauncher z3 = new SolverLauncher (Z3,writer,SolverLauncher.PRODUCE_UNSAT_CORES);
+		SolverLauncher z3 = new SolverLauncher (Z3+Z3_STD_IN,writer,SolverLauncher.PRODUCE_UNSAT_CORES);
 		z3.launch();
 		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
 
@@ -154,7 +203,7 @@ public final class test{
 		long timer = System.currentTimeMillis();
 		FunctionFactory factory = new FunctionFactory(512, 0.75f);
 		SMT2Writer writer = new SMT2Writer(factory, formulas);
-		SolverLauncher z3 = new SolverLauncher (Z3,writer,SolverLauncher.PRODUCE_UNSAT_CORES);
+		SolverLauncher z3 = new SolverLauncher (Z3+Z3_STD_IN,writer,SolverLauncher.PRODUCE_UNSAT_CORES);
 		Result r = z3.launch();
 		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
 		return r;

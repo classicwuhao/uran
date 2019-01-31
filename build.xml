@@ -59,10 +59,9 @@
 				<path refid="classpath.test"/>
 				<pathelement location="${test.build.dir}"/>
 			</classpath>
-
 			<test name="uran.test.formula.testFormula" />
 			<!-- test name="uran.test.formula.array.test_array" /-->
-			<test name="uran.test.formula.bv.test_bv"/>
+			<!-- test name="uran.test.formula.bv.test_bv"/ -->
 			<test name="uran.test.formula.unsat.test"/>
 			<!-- batchtest fork="yes">
 				<fileset dir="${test.build.dir}">
