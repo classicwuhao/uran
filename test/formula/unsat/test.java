@@ -208,7 +208,4 @@ public final class test{
 		ColorPrint.println("Time cost:"+(System.currentTimeMillis()-timer)+" ms",Color.WHITE);
 		return r;
 	}
-
-
-	
 }
