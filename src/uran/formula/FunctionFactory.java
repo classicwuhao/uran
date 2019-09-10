@@ -86,6 +86,13 @@ public final class FunctionFactory{
 		array_table = new HashMap<String, ArrayEx<? extends Type, ? extends Type>>(cap,load);
 	}
 
+	public void clear(){
+		fun_table.clear();
+		sym_table.clear();
+		bv_table.clear();
+		bv_sym_table.clear();
+	}
+
 	/** 
 	 *	Create a new constant, and save it into the hash map. No duplicated constant is allowed in the hashmap.
 	 *	@param name 	the name of a <tt>constant<tt>

@@ -100,6 +100,24 @@ public final class FormulaBuilder{
 					new ComparisonFormula (Connective.LESS, f, new NumLiteral(j))
 				);
 	}
+	
+	public static AbstractFormula range (AbstractFormula formula, int i, boolean a, int j, boolean b){
+		ComparisonFormula formula1;
+		ComparisonFormula formula2;
+		
+		if (a)
+			formula1 = new ComparisonFormula (Connective.GEQ, formula, new NumLiteral(i)) ; 
+		else
+			formula1 = new ComparisonFormula (Connective.GREATER, formula, new NumLiteral(i));
+		
+			
+		if (b)
+			formula2 = new ComparisonFormula (Connective.GEQ, formula, new NumLiteral(j));
+		else
+			formula2 = new ComparisonFormula (Connective.GREATER, formula, new NumLiteral(j));
+			
+		return new AndFormula (formula1, formula2);
+	}
 		
 		
 }
