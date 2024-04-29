@@ -59,6 +59,13 @@ public class Function extends AbstractFormula{
 		if (name.trim().equals("")) throw new NullableFormulaException("Function: name is empty.");
 		return this.name;
 	}
+	
+	/** change the name of this function. */
+	public void setName(String name){
+		if (name==null) throw new NullableFormulaException("Function: name is null.");
+		if (name.trim().equals("")) throw new NullableFormulaException("Function: name is empty.");
+		this.name=name;
+	}
 
 	/** Return all arguments */	
 	public Type[] getArgs(){return this.arguments;}

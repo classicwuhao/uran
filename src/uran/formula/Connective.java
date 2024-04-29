@@ -25,8 +25,12 @@ public enum Connective{
 	MINUS{public String toString(){return "-";}},
 	MUL{public String toString(){return "*";}},
 	DIV{public String toString(){return "div";}},
+	DIV_R{public String toString(){return "/";}},
+	REM{public String toString(){return "rem";}},
+	POW{public String toString(){return "^";}},
 	GREATER{public String toString(){return ">";}},
 	LESS{public String toString(){return "<";}},
 	GEQ{public String toString(){return ">=";}},	
-	LEQ{public String toString(){return "<=";}};
+	LEQ{public String toString(){return "<=";}},
+	ITE{public String toString(){return "ite";}};
 }

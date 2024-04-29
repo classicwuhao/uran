@@ -52,7 +52,7 @@
 	<target name="run-test" depends="build-test">
 		<echo>Running test cases...</echo>
 		<junit haltonfailure="yes" printsummary="on" fork="true">
-			<env key="LD_LIBRARY_PATH" path=":${library.so.dir}" />
+			<env key="DYLD_LIBRARY_PATH" path=":${library.so.dir}" />
 			<sysproperty key="java.library.path" value="${library.so.dir}"/>
 			<formatter type="brief" usefile="no"/>
 			<classpath>
@@ -61,7 +61,7 @@
 			</classpath>
 			<test name="uran.test.formula.testFormula" />
 			<!-- test name="uran.test.formula.array.test_array" /-->
-			<!-- test name="uran.test.formula.bv.test_bv"/ -->
+			<test name="uran.test.formula.bv.test_bv"/>
 			<test name="uran.test.formula.unsat.test"/>
 			<!-- batchtest fork="yes">
 				<fileset dir="${test.build.dir}">

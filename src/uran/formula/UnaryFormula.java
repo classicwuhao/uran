@@ -15,6 +15,7 @@ package uran.formula;
 
 public abstract class UnaryFormula extends AbstractFormula{
 	private AbstractFormula _formula;
+	public UnaryFormula(){}
 	public UnaryFormula(AbstractFormula formula){_formula=formula;}
 	public boolean isUnaryFormula() {return true;}
 	public boolean isNegFormula(){return false;}

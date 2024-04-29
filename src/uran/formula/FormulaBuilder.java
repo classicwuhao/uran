@@ -112,9 +112,9 @@ public final class FormulaBuilder{
 		
 			
 		if (b)
-			formula2 = new ComparisonFormula (Connective.GEQ, formula, new NumLiteral(j));
+			formula2 = new ComparisonFormula (Connective.LEQ, formula, new NumLiteral(j));
 		else
-			formula2 = new ComparisonFormula (Connective.GREATER, formula, new NumLiteral(j));
+			formula2 = new ComparisonFormula (Connective.LESS, formula, new NumLiteral(j));
 			
 		return new AndFormula (formula1, formula2);
 	}

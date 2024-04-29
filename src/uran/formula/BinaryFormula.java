@@ -95,7 +95,7 @@ public abstract class BinaryFormula extends AbstractFormula{
 	
 	@Override
 	public String toSMT2(){
-		return "("+_conn+" "+_left.toSMT2()+" "+_right.toSMT2()+")";
+		return "("+_conn.toString()+" "+_left.toSMT2()+" "+_right.toSMT2()+")";
 	}
 
 	@Override	

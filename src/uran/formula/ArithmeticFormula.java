@@ -35,16 +35,17 @@ public final class ArithmeticFormula extends BinaryFormula{
 	@Override
 	public void setConnective (Connective con){
 		if (!checkConnective(con))
-			throw new MissingFormulaException("Build ArithmeticFormula: Connective must be one of PLUS, MINUS, MUL and DIV.");
+			throw new MissingFormulaException("Build ArithmeticFormula: Connective must be one of PLUS, MINUS, MUL, DIV and POW.");
 	
 		super.setConnective(con);
 	}
 
 	private static boolean checkConnective(Connective con){
-		if (con==null) throw new NullableFormulaException("Set ComparisonFormula: you must specifiy a correct connective.");
-		return  con==Connective.PLUS || con==Connective.MINUS || con==Connective.MUL || con==Connective.DIV;
+		if (con==null) throw new NullableFormulaException("Set ComparisonFormula: you must specify a correct connective.");
+		return  con==Connective.PLUS || con==Connective.MINUS || 
+		con==Connective.MUL || con==Connective.DIV || con==Connective.DIV_R || con==Connective.POW || con==Connective.REM;
 	}
-
+	
 	private static Connective makeOperator(Connective con){
 		if (!checkConnective(con))
 			throw new MissingFormulaException("Build ComparisonFormula: you must specify a correct operator.");

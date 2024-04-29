@@ -53,7 +53,7 @@ public final class FunctionFactory{
 	/* tables for array type, later will change to all generic types: set, bag, list, etc */
 	private HashMap<String, ArrayEx<? extends Type,? extends Type>> array_table;
 
-	/* do we need to constrcut a model for an array? */
+	/* do we need to construct a model for an array? */
 
 	/** Create a factory with default ini capacity and load factor */
 	public FunctionFactory(){
@@ -61,7 +61,7 @@ public final class FunctionFactory{
 		sym_table = new HashMap<Function, Value>();
 		bv_table = new HashMap<String, BitVector>();
 		bv_sym_table = new HashMap<BitVector, Value>();
-		array_table = new HashMap<String, ArrayEx<? extends Type, ? extends Type>>();		
+		array_table = new HashMap<String, ArrayEx<? extends Type, ? extends Type>>();
 	}
 
 	/** Specify an initial capacity for symbol tables */
@@ -336,7 +336,7 @@ public final class FunctionFactory{
 	/**
 	 * Negate all the constants defined in the constant table.	
 	 */		
-	public NegFormula negConstants(){
+	public AbstractFormula negConstants(){
 		List <AbstractFormula> formulas = new ArrayList<AbstractFormula>();
 		
 		for (String name : fun_table.keySet()){
@@ -356,7 +356,51 @@ public final class FunctionFactory{
 		
 		AbstractFormula[] tmp = new AbstractFormula[formulas.size()];
 		for (int i=0;i<formulas.size();i++) tmp[i]=formulas.get(i);
-		return new NegFormula(new AndFormula().merge(tmp));
+
+		if (tmp.length==0) return new BoolLiteral(true);
+		
+		return tmp.length>=2 ? 
+				new NegFormula(FormulaBuilder.all(tmp)) 
+			:
+				new NegFormula(tmp[0]);
+
+		//return new NegFormula(new AndFormula().merge(tmp));
+	}
+
+	/**
+	 * Generate blocking formulas for a specific set of constants.
+	 * @param constants
+	 * @return a blocking formula.
+	 */
+
+	public AbstractFormula generateBlockingFormulas(List<Constant> constants){
+		List <AbstractFormula> formulas = new ArrayList<AbstractFormula>();
+
+		for (Constant c : constants){
+			Function fun = fun_table.get(c.name());
+			if (fun.getReturnType().isBool()){
+				BoolValue bv= (BoolValue) sym_table.get(fun);
+				if (bv==null) continue; /* skip uniterpreted symbols */
+				formulas.add(new EqFormula(fun, new BoolLiteral(bv.getValue())));
+			}
+			else if (fun.getReturnType().isInt()){
+				IntValue iv = (IntValue) sym_table.get(fun);
+				if (iv==null) continue;
+				formulas.add(new EqFormula(fun, new NumLiteral(iv.getValue())));
+			}
+		}
+
+		AbstractFormula[] tmp = new AbstractFormula[formulas.size()];
+		for (int i=0;i<formulas.size();i++) tmp[i]=formulas.get(i);
+
+		if (tmp.length==0) return new BoolLiteral(true);
+
+		return tmp.length>=2 ? 
+				new NegFormula(FormulaBuilder.all(tmp)) 
+			:
+				new NegFormula(tmp[0]);
+			
+		//return new NegFormula(new AndFormula().merge(tmp));
 	}
 
 	/**

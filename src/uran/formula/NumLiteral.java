@@ -13,7 +13,7 @@
 package uran.formula;
 import uran.formula.value.IntValue;
 import uran.formula.visitor.AbstractVisitor;
-
+import java.util.Locale;
 /** Numeric Literal */
 public class NumLiteral extends Literal{
 	private IntValue value;
@@ -44,9 +44,9 @@ public class NumLiteral extends Literal{
 
 	@Override
 	public String toString(){
-		return String.format("%d",value.getValue());	
+		return String.format(Locale.ENGLISH,"%d",value.getValue());
 	}
-
+	
 	@Override
 	public String toSMT2(){return toString();}
 	

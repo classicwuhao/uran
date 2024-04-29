@@ -22,6 +22,9 @@ import com.microsoft.z3.enumerations.*;
 import uran.formula.value.Value;
 import uran.formula.value.BoolValue;
 import uran.formula.value.IntValue;
+import uran.formula.value.RealValue;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * We only need to use Z3 APIs to read in an smt2 file and solve it for us, we also update our constants and uninterpreted functions 
@@ -34,7 +37,7 @@ public final class Z3SMT2Solver{
 	
 	private FunctionFactory factory;
 	private SMT2Writer writer;	
-	
+	private Solver solver;
 	/**
 	 *	Construct solver with a non-null SMT2Writer.
 	 */	
@@ -55,21 +58,66 @@ public final class Z3SMT2Solver{
 		/* parse SMT2 file */
 		HashMap<String, String> cfg = new HashMap<String, String>();
 		cfg.put("model","true");
-		cfg.put("produce-unsat-cores","true");
+		cfg.put("unsat_core","true");
+		
 		try{
-			Context ctx = new Context();
-			Solver solver = ctx.mkSolver();
-			solver.add(ctx.mkAnd(ctx.parseSMTLIB2File(writer.getFile(),null, null, null, null)));
-			Status result = solver.check();
+			Context ctx = new Context(cfg);
+			Params p = ctx.mkParams();
+			this.solver = ctx.mkSolver();
+			
+			p.add("timeout",SolverOption.TIMEOUT);
+			if (SolverOption.TIMEOUT!=Integer.MAX_VALUE) solver.setParameters(p);
+			if (SolverOption.PPDECIMAL) { 
+				Global.setParameter ("pp.decimal","true"); 
+				Global.setParameter ("pp.decimal_precision","5");
+			};
+			
+			Status result;
+			if (writer.sizeOfAssumption()>0){
+				/* make assumptions*/
+				int i=0;
+				StringBuffer sb = new StringBuffer();
+				StringBuffer decls = new StringBuffer();
+				for (Function decl : writer.getDecls()) {
+					sb.append("(declare-fun "+decl.toSMT2_decl()+") ");
+					decls.append("(declare-fun "+decl.toSMT2_decl()+")");
+				}
+				BoolExpr[] assumptions = new BoolExpr[writer.sizeOfAssumption()];
+				
+				for (AbstractFormula formula : writer.getFormulas()){
+					sb.append("( assert "+formula.toSMT2()+" ) ");
+					//solver.add(ctx.parseSMTLIB2String("( assert "+formula.toSMT2()+" ) ",null, null, null, null)[0]);
+				}
+				
+				solver.add(ctx.parseSMTLIB2String(sb.toString(),null, null, null, null)[0]);
+				//solver.add(ctx.mkAnd(ctx.parseSMTLIB2File(writer.getFile(),null, null, null, null)));
+				//solver.fromFile(writer.getFile());
+				
+				for (LabeledFormula f : writer.getAssumptions()){
+					assumptions[i] = ctx.parseSMTLIB2String(decls.toString()+ " (assert "+f.toSMT2()+" ) ",null,null,null,null)[0];
+					solver.assertAndTrack(assumptions[i], ctx.mkBoolConst(f.label()));
+					writer.core_map.put(f.label().hashCode(),f.label().hashCode());
+					i++;
+				}
+				
+				//result = solver.check(assumptions);
+				result = solver.check();
+			}
+			else{
+				solver.add(ctx.parseSMTLIB2File(writer.getFile(),null, null, null, null));
+				result = solver.check();
+			}
+
 			if (result == Status.SATISFIABLE){
 				updateFuns(solver.getModel());
 				return Result.SAT;
 			}
 			else if (result == Status.UNSATISFIABLE){
 				//System.out.println(solver.getProof());
-				for (Expr c : solver.getUnsatCore()){
-					System.out.println("unsat: "+ c);
-				}
+				//System.out.println("core: ");
+				//System.out.println(solver.getUnsatCore().length);
+				for (Expr c : solver.getUnsatCore()) writer.addCore(c.toString().hashCode());
+
 				return Result.UNSAT;
 			}
 			else
@@ -90,7 +138,7 @@ public final class Z3SMT2Solver{
 		for (int i=0;i<cons.length;i++){
 			Z3_sort_kind sort = cons[i].getRange().getSortKind();
 			//System.out.println("Arity:"+cons[i].getArity()+cons[i].toString());
-			if (sort==Z3_sort_kind.Z3_INT_SORT || sort==Z3_sort_kind.Z3_BV_SORT || sort==Z3_sort_kind.Z3_BOOL_SORT){
+			if (sort==Z3_sort_kind.Z3_INT_SORT || sort==Z3_sort_kind.Z3_BV_SORT || sort==Z3_sort_kind.Z3_BOOL_SORT || sort==Z3_sort_kind.Z3_REAL_SORT){
 				expr = model.getConstInterp(cons[i]);
 				Symbol sym = cons[i].getName();
 				if (expr.isBool()){
@@ -99,6 +147,46 @@ public final class Z3SMT2Solver{
 				else if (expr.isInt()){
 					factory.updateValue(cons[i].getName().toString(),
 					new IntValue(Integer.parseInt(((IntExpr)expr).toString())));
+				}
+				else if (expr.isReal()){
+					float r=Float.NEGATIVE_INFINITY; 
+					String str_value;
+					/*if (expr.isAlgebraicNumber()){
+						str_value = ((AlgebraicNum) expr).toDecimal(5);
+						r = Float.parseFloat(str_value.substring(0,str_value.indexOf("?")));
+						factory.updateValue(cons[i].getName().toString(),new RealValue(r));
+						continue;
+					}*/
+					int k=0;
+					
+					if (expr.isRatNum()){
+						str_value = ((RatNum) expr).toDecimalString(SolverOption.PRECISION);
+						k = str_value.indexOf("?"); //check values returns from z3.
+						r = (k==-1) ? Float.parseFloat(str_value) : Float.parseFloat(str_value.substring(0,k));
+						factory.updateValue(cons[i].getName().toString(),new RealValue(SolverOption.PRECISION,r));
+
+					} else if (expr.isAlgebraicNumber()){
+						str_value = ((AlgebraicNum) expr).toDecimal(SolverOption.PRECISION);
+						k = str_value.indexOf("?"); //check values returns from z3.
+						r = (k==-1) ? Float.parseFloat(str_value) : Float.parseFloat(str_value.substring(0,k));
+						factory.updateValue(cons[i].getName().toString(),new RealValue(SolverOption.PRECISION,r));
+					}
+					else{
+						factory.updateValue(cons[i].getName().toString(),new RealValue(expr.toString()));
+					}
+					
+					/*String fraction = e.toString().trim();
+					if (fraction.indexOf("/")!=-1){
+						String num[] = fraction.split("/");
+						int numerator = Integer.parseInt(num[0]);
+						int denominator = Integer.parseInt(num[1]);
+						float v = (float)numerator/denominator;
+						factory.updateValue(cons[i].getName().toString(),new RealValue(v));
+					}
+					else{
+						factory.updateValue(cons[i].getName().toString(),
+						new RealValue(Float.parseFloat(((RealExpr)expr).toString())));
+					}*/
 				}
 				else if (expr.isBV()){
 					factory.updateBV(cons[i].getName().toString(), new IntValue(((BitVecNum)expr).getInt()));
@@ -134,5 +222,17 @@ public final class Z3SMT2Solver{
 			}
 		}
 	}
+		
+	public String name(){
+		return "Z3";
+	}
 	
+	public String version(){
+		return Version.getString();
+	}
+
+	public String full_version(){
+		return Version.getFullVersion();
+	}
+
 }

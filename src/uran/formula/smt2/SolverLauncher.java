@@ -15,6 +15,7 @@ import uran.formula.Variable;
 import uran.formula.Literal;
 import uran.formula.BoolLiteral;
 import uran.formula.NumLiteral;
+import uran.formula.RealLiteral;
 import uran.formula.Decls;
 import uran.formula.EqFormula;
 import uran.formula.NegFormula;
@@ -24,6 +25,7 @@ import uran.formula.Connective;
 import uran.formula.FunctionFactory;
 import uran.formula.LabeledFormula;
 import uran.formula.bv.BV_BinaryFormula;
+import uran.formula.TernaryFormula;
 import uran.formula.bv.BV_Literal;
 import uran.formula.bv.BV_AndFormula;
 import uran.formula.bv.BV_NotFormula;
@@ -83,10 +85,12 @@ public class SolverLauncher extends AbstractVisitor {
 	public void visit (NegFormula f){assemble(f);}
 	public void visit (Function f){assemble(f);}
 	public void visit (BinaryFormula f){assemble(f);}
+	public void visit (TernaryFormula f){assemble(f);}
 	public void visit (Scope s){assemble(s);}
 	public void visit (ImpliesFormula f){assemble(f);}
 	public void visit (BoolLiteral l){assemble(l);}
 	public void visit (NumLiteral l){assemble(l);}
+	public void visit (RealLiteral l){assemble(l);}
 	public void visit (BV_Formula f){assemble(f);}
 	public void visit (BV_Literal l){assemble(l);}
 	public void visit (BV_BinaryFormula f){assemble(f);}

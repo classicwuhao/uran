@@ -16,6 +16,8 @@ import uran.formula.visitor.AbstractVisitor;
 
 public final class NegFormula extends UnaryFormula {
 	
+	public NegFormula(){super();}
+	
 	public NegFormula (AbstractFormula formula){
 		super(formula);
 	}

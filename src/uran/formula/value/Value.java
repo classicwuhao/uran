@@ -17,5 +17,6 @@ public abstract class Value{
 	public abstract String toString();
 	public boolean IsBool(){return false;}
 	public boolean IsInt(){return false;}
+	public boolean IsReal(){return false;}
 	public boolean IsString(){return false;}
 }
